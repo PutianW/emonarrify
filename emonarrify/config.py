@@ -41,3 +41,45 @@ SAMPLE_RATE = 22050
 # Default Fallback
 # =============================================================================
 DEFAULT_EMOTION = "neutral"
+
+# =============================================================================
+# Data Interchange Formats
+#
+# All cross-phase data files must follow the schemas below.
+# Do NOT change these without all three members agreeing.
+# =============================================================================
+#
+# --- Phase 1 output: PHASE1_JSONL_PATH (.jsonl) ---
+# One JSON object per line. Phase 2 consumes this for training.
+#
+#   {
+#     "image_id": "VIST_00001",
+#     "image_path": "data/images/00001.jpg",
+#     "narrative_text": "The sky turned dark...",
+#     "emotion_label": "sad"                        # must be in EMOTION_LABELS
+#   }
+#
+# --- Phase 3 output: LOOKUP_TABLE_PATH (.json) ---
+# Exported after Phase 3 training. Phase 2 uses these vectors as regression targets.
+#
+#   {
+#     "embedding_dim": 128,                         # must equal D_EMO
+#     "embeddings": {
+#       "neutral":  [0.12, -0.03, ...],             # list of 128 floats
+#       "happy":    [0.45,  0.21, ...],
+#       "angry":    [...],
+#       "sad":      [...],
+#       "surprise": [...]
+#     }
+#   }
+#
+# --- Function signatures (interface contract) ---
+#
+#   Phase 1:  generate_story(image: PIL.Image) -> dict
+#             returns {"narrative_text": str, "emotion_label": str, "parse_confidence": str}
+#
+#   Phase 2:  encode_image_emotion(image: PIL.Image) -> torch.Tensor
+#             returns emotion embedding, shape (D_EMO,)
+#
+#   Phase 3:  synthesize_speech(text: str, emotion_embedding: torch.Tensor) -> np.ndarray
+#             returns audio waveform, shape (n_samples,)
