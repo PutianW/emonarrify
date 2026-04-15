@@ -79,3 +79,49 @@ In the first cell of any notebook:
 !pip install -r requirements.txt
 ```
 Then import and use the project modules directly. **Do not write model logic in the notebook** — keep it in the `.py` files so version control stays clean.
+
+## System Context & Task Overview:
+You are an expert AI software engineer assisting me in implementing an MVP (Minimum Viable Product) for a Multimodal Emotional Voice Generation system, tentatively named "Emotional Image Storytelling Fairy".
+
+To ensure rapid team collaboration and system integration, we are building a simplified engineering version first, utilizing discrete emotion labels and a learnable lookup table rather than continuous feature disentanglement.
+Please read the agreed-upon standards, architecture breakdown, datasets, evaluation metrics, and future work below. Acknowledge your understanding, and wait for my instructions to start implementing the stub functions.
+
+1. Agreed-Upon Standards (Strict Constraints)
+Emotion Label Set: We strictly use 5 discrete categories aligned with the ESD dataset: ["neutral", "happy", "angry", "sad", "surprise"].
+Emotion Embedding Dimension: D_emo = 128. This is used consistently across Phase 2 and Phase 3.
+Data Interchange Format: JSON Lines (.jsonl). Every phase must output or consume records with this schema:
+{"image_id": str, "image_path": str, "narrative_text": str, "emotion_label": str}
+Code Interface Contract: Each phase must expose a single callable function with a fixed signature. We will start by implementing stubs that return dummy data before doing the actual model training.
+Example: def generate_story(image: PIL.Image) -> dict:
+
+
+2. Architecture Breakdown (MVP Version)
+PHASE 1: Vision-Language Model (VLM)
+Input: Image.
+Output: Generates narrative_text and predicts one discrete emotion_label (from the 5 predefined categories).
+PHASE 2: Image Emotion Encoder
+Input: Image.
+Output: Maps the image into a continuous emotion embedding space of size 128 (this vector must eventually align with Phase 3's lookup table).
+PHASE 3: Emotion-Conditioned TTS Model
+Input: narrative_text and emotion_label.
+Core Mechanism: Maintains a learnable Emotion Lookup Table mapping the 5 discrete emotion labels to a 128-dimensional embedding. It uses this lookup table to fetch the exact 128D vector based on the Phase 1 label, and synthesizes the final audio alongside the text.
+Export: It exports the trained lookup table (as a JSON mapping discrete labels to 128D floats) for Phase 2 to consume/align with.
+
+
+3. Data & Evaluation
+Datasets for Training:
+Vision/Text: VIST (Visual Storytelling Dataset).
+Speech/Emotion: Expresso Dataset (preferred), IEMOCAP Emotion Speech Database, EmoV-DB, LibriTTS.
+Evaluation Metrics (to be implemented):
+Objective: CLIP-score (to evaluate semantic alignment between generated text and input image), MCD / Mel-Cepstral Distortion (to assess acoustic quality and spectral distance against baselines).
+Subjective: Mean Opinion Score (MOS) setup for blind tests (evaluating emotional expressiveness and whether the prosody naturally matches the visual atmosphere).
+
+
+4. [TODO / Future Advanced Upgrades]
+Currently, we use a simple Lookup Table. However, our ultimate architectural goal is to implement the CLEAR Module (Cross-Modal De-Redundancy) to handle continuous features.
+Future Phase 2: Instead of discrete labels, it will extract dense, continuous Visual Emotion Features ($E_v$) using Contrastive Learning against ground-truth audio.
+Future Phase 3 (CLEAR Module): We will remove the lookup table. Instead, we will calculate the Cross-Covariance between Text Features ($E_t$) and Visual/Audio Features ($E_v$/$E_a$), apply SVD, and use a Null-Space Projection to eliminate shared semantic directions. This will pass only "purified" atmospheric cues to the TTS, preventing emotion collision.
+
+End of Context.
+If you understand these MVP constraints, the architecture, datasets, evaluation metrics, and the Future Work trajectory, please reply with a brief confirmation. Let me know when you are ready to write the Python stub functions (returning dummy data) for all 3 phases so we can test the End-to-End pipeline immediately.
+
