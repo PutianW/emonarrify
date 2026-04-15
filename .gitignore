@@ -13,6 +13,9 @@ weights/*/
 # Outputs
 outputs/*.wav
 
+# ESD
+ESD/
+
 # OS
 .DS_Store
 Thumbs.db

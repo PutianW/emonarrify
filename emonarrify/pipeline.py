@@ -4,7 +4,6 @@ Orchestrates Phase 1, 2, 3 into a single end-to-end inference call.
 """
 
 import os
-import json
 import numpy as np
 import torch
 import soundfile as sf
@@ -12,8 +11,8 @@ from PIL import Image
 from typing import Optional
 
 from .config import (
-    D_EMO, EMOTION_TO_IDX, DEFAULT_EMOTION,
-    LOOKUP_TABLE_PATH, OUTPUT_DIR, SAMPLE_RATE,
+    D_EMO, EMOTION_TO_IDX,
+    LOOKUP_TABLE_PATH, SAMPLE_RATE,
 )
 from .phase1.model import Phase1Model
 from .phase2.model import Phase2Model
@@ -105,14 +104,24 @@ class EmoNarrifyPipeline:
 
         # Step 2: get emotion embedding
         if not self.use_fallback and self.phase2 is not None:
-            emotion_embedding = self.phase2.encode_image_emotion(image)
-            embedding_source = "phase2"
+            try:
+                emotion_embedding = self.phase2.encode_image_emotion(image)
+                embedding_source = "phase2"
+            except Exception as e:
+                print(f"[EmoNarrify][Warn] Phase2 failed ({e}); switching to fallback path.")
+                emotion_embedding = self._get_fallback_embedding(emotion_label)
+                embedding_source = "fallback"
         else:
             emotion_embedding = self._get_fallback_embedding(emotion_label)
             embedding_source = "fallback"
 
         # Step 3: Phase 3 - synthesize speech
-        audio = self.phase3.synthesize_speech(narrative_text, emotion_embedding)
+        if embedding_source == "fallback":
+            # In fallback mode, Phase 3 follows the MVP contract directly:
+            # text + discrete emotion label -> lookup table -> waveform.
+            audio = self.phase3.synthesize_from_label(narrative_text, emotion_label)
+        else:
+            audio = self.phase3.synthesize_speech(narrative_text, emotion_embedding)
 
         return {
             "narrative_text": narrative_text,

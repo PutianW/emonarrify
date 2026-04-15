@@ -1,0 +1,17 @@
+{
+  "manifest_path": "/Users/andrewchen/Desktop/18789/emonarrify/data/phase3_esd_manifest.jsonl",
+  "total_records": 35000,
+  "num_speakers": 20,
+  "split_counts": {
+    "train": 28000,
+    "val": 3500,
+    "test": 3500
+  },
+  "emotion_counts": {
+    "neutral": 7000,
+    "happy": 7000,
+    "angry": 7000,
+    "sad": 7000,
+    "surprise": 7000
+  }
+}

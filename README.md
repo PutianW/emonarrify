@@ -80,6 +80,54 @@ In the first cell of any notebook:
 ```
 Then import and use the project modules directly. **Do not write model logic in the notebook** — keep it in the `.py` files so version control stays clean.
 
+## Phase 3 MVP Workflow (ESD)
+
+This repository now includes a runnable Phase 3 MVP path:
+
+1. **Prepare ESD manifest** (speaker-aware train/val/test split)
+2. **Run Phase 3 stub training** (validates data + exports lookup table)
+3. **Run inference** (normal path or fallback path)
+4. **Run evaluation scaffold** (distribution summary + MOS template)
+
+### 1) Prepare manifest from ESD
+
+```bash
+python data/phase3_prepare_data.py --esd-root ESD --output data/phase3_esd_manifest.jsonl
+```
+
+### 2) Run Phase 3 stub training
+
+```bash
+python data/phase3_train_stub.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --lookup-out weights/emotion_lookup_table.json
+```
+
+### 3) Run inference with fallback (Phase 1 label -> Phase 3 lookup table)
+
+```bash
+python run_inference.py \
+    --image test.jpg \
+    --phase1 weights/phase1_lora/ \
+    --phase3 weights/phase3_tts.pt \
+    --fallback \
+    --output outputs/phase3_fallback.wav
+```
+
+### 4) Evaluate manifest summary (MVP scaffold)
+
+```bash
+python data/phase3_eval_manifest.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --save-json outputs/phase3_manifest_summary.json
+```
+
+### Notes
+
+- `ESD/` is local dataset content and should not be committed to git.
+- Objective metrics (`MCD`, `CLIP-score`) are tracked as next-step evaluation work.
+- Subjective evaluation can start immediately using MOS CSV templates via `create_mos_template` in `emonarrify.phase3.evaluation`.
+
 ## System Context & Task Overview:
 You are an expert AI software engineer assisting me in implementing an MVP (Minimum Viable Product) for a Multimodal Emotional Voice Generation system, tentatively named "Emotional Image Storytelling Fairy".
 
