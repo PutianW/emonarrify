@@ -1,18 +1,22 @@
 import json
 import requests
 import time
-from pathlib import Path
 from collections import defaultdict
 from tqdm import tqdm
 from transformers import pipeline
 
+import boto3
+from io import BytesIO
 
-INPUT_JSON = "sis/test.story-in-sequence.json"
-OUTPUT_JSONL = "phase1_vist.jsonl"
-IMAGE_DIR = Path("images")
-IMAGE_DIR.mkdir(exist_ok=True)
 
-NUM_SAMPLES = 10 
+INPUT_JSON = "sis/train.story-in-sequence.json"
+OUTPUT_JSONL = "phase1_vist_train.jsonl"
+
+MAX_PER_EMOTION = 800
+MAX_TOTAL = 4000
+
+S3_BUCKET = "emonarrify-cassie"
+s3 = boto3.client("s3")
 
 
 def load_emotion_clf():
@@ -24,6 +28,7 @@ def load_emotion_clf():
         device=-1
     )
     return clf
+
 
 def map_emotion(labels):
     label_scores = {l["label"]: l["score"] for l in labels}
@@ -40,19 +45,24 @@ def map_emotion(labels):
     else:
         return "neutral"
 
-def download_image(url, save_path):
+
+def download_and_upload_image(url, photo_id):
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
         r = requests.get(url, headers=headers, timeout=15)
         r.raise_for_status()
 
-        with open(save_path, "wb") as f:
-            f.write(r.content)
+        img_bytes = BytesIO(r.content)
+        s3_key = f"images/train/{photo_id}.jpg"
 
-        return True
+        s3.upload_fileobj(img_bytes, S3_BUCKET, s3_key)
+
+        return f"s3://{S3_BUCKET}/{s3_key}"
+
     except Exception as e:
-        print(f"Download failed: {url} -> {e}")
-        return False
+        print(f"Download/upload failed: {url} -> {e}")
+        return None
+
 
 def load_vist_sis():
     print("Loading VIST SIS JSON...")
@@ -102,6 +112,7 @@ def load_vist_sis():
 
     return stories, image_map
 
+
 def build_full_story(story_items):
     texts = []
     for x in story_items:
@@ -109,6 +120,7 @@ def build_full_story(story_items):
         if text:
             texts.append(text)
     return " ".join(texts).strip()
+
 
 def get_mid_image_info(story_items, image_map):
     if not story_items:
@@ -127,6 +139,7 @@ def get_mid_image_info(story_items, image_map):
     url = img_info.get("url_o") or img_info.get("url_m") or img_info.get("url")
     return photo_id, url, img_info
 
+
 def select_best_story_per_image(stories, image_map):
     best_by_photo = {}
 
@@ -141,12 +154,10 @@ def select_best_story_per_image(stories, image_map):
 
         story_len = len(full_story.split())
 
-        # keep longest story for same image
         if photo_id not in best_by_photo or story_len > best_by_photo[photo_id]["story_len"]:
             best_by_photo[photo_id] = {
                 "photo_id": photo_id,
                 "url": url,
-                "story_items": story,
                 "full_story": full_story,
                 "story_len": story_len,
             }
@@ -157,18 +168,35 @@ def select_best_story_per_image(stories, image_map):
     print(f"Unique downloadable candidates: {len(selected)}")
     return selected
 
+
+def save_jsonl(data):
+    print("Saving JSONL locally...")
+    with open(OUTPUT_JSONL, "w", encoding="utf-8") as f:
+        for item in data:
+            f.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+    print(f"Saved {len(data)} samples to {OUTPUT_JSONL}")
+
+
+def upload_jsonl_to_s3():
+    print("Uploading JSONL to S3...")
+    s3.upload_file(OUTPUT_JSONL, S3_BUCKET, OUTPUT_JSONL)
+    print("JSONL uploaded!")
+
+
 def build_dataset():
     stories, image_map = load_vist_sis()
-
     selected_samples = select_best_story_per_image(stories, image_map)
 
     clf = load_emotion_clf()
     results = []
 
-    print("Processing selected stories...")
+    emotion_counts = defaultdict(int)
+
+    print("Processing stories with balanced sampling...")
 
     for i, sample in enumerate(tqdm(selected_samples)):
-        if len(results) >= NUM_SAMPLES:
+        if len(results) >= MAX_TOTAL:
             break
 
         try:
@@ -179,43 +207,37 @@ def build_dataset():
             if not full_story:
                 continue
 
-            save_path = IMAGE_DIR / f"{photo_id}.jpg"
-
-            if not save_path.exists():
-                success = download_image(url, save_path)
-                if not success:
-                    continue
-                time.sleep(0.1)
+            image_s3_path = download_and_upload_image(url, photo_id)
+            if not image_s3_path:
+                continue
 
             outputs = clf(full_story)[0]
             emotion = map_emotion(outputs)
 
+            if emotion_counts[emotion] >= MAX_PER_EMOTION:
+                continue
+
             record = {
-                "image_path": str(save_path),
+                "image_path": image_s3_path,
                 "narrative_text": full_story,
                 "emotion_label": emotion
             }
+
             results.append(record)
+            emotion_counts[emotion] += 1
+
+            time.sleep(0.2)
 
         except Exception as e:
             print(f"Error at sample {i}: {e}")
             continue
 
     save_jsonl(results)
+    upload_jsonl_to_s3()
 
-    if len(results) < NUM_SAMPLES:
-        print(
-            f"Warning: requested {NUM_SAMPLES} samples, "
-            f"but only got {len(results)} successful samples."
-        )
+    print(f"Done! Collected {len(results)} samples.")
+    print("Emotion distribution:", dict(emotion_counts))
 
-def save_jsonl(data):
-    print("Saving JSONL...")
-    with open(OUTPUT_JSONL, "w", encoding="utf-8") as f:
-        for item in data:
-            f.write(json.dumps(item, ensure_ascii=False) + "\n")
-
-    print(f"Done! Saved {len(data)} samples to {OUTPUT_JSONL}")
 
 if __name__ == "__main__":
     build_dataset()
