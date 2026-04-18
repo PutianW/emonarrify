@@ -128,6 +128,52 @@ python data/phase3_eval_manifest.py \
 - Objective metrics (`MCD`, `CLIP-score`) are tracked as next-step evaluation work.
 - Subjective evaluation can start immediately using MOS CSV templates via `create_mos_template` in `emonarrify.phase3.evaluation`.
 
+## AWS / SSH Training (Phase 3)
+
+For long-running training on AWS, use `tmux` and the CLI script(s):
+
+### 1) Start a tmux session
+
+```bash
+tmux new -s phase3
+```
+
+Detach safely with `Ctrl+b`, then `d`.
+Re-attach later:
+
+```bash
+tmux attach -t phase3
+```
+
+### 2) Train MVP backbone (in this repo)
+
+```bash
+PYTHONPATH=. python phase3_train.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --epochs 10 \
+    --batch-size 8 \
+    --num-workers 4 \
+    --save-val-audio
+```
+
+### 3) Launch VITS fine-tuning (external VITS repo)
+
+Use this when you have a VITS training repo/config prepared on AWS:
+
+```bash
+PYTHONPATH=. python phase3_train_vits.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --vits-repo ~/vits \
+    --vits-config ~/vits/configs/finetune_emonarrify.json \
+    --run-name emonarrify_phase3_vits
+```
+
+This launcher will:
+- build VITS filelists from `phase3_esd_manifest.jsonl`
+- generate a patched config with train/val filelist paths
+- launch VITS training and stream logs
+- save logs/metadata under `outputs/vits_phase3/`
+
 ## System Context & Task Overview:
 You are an expert AI software engineer assisting me in implementing an MVP (Minimum Viable Product) for a Multimodal Emotional Voice Generation system, tentatively named "Emotional Image Storytelling Fairy".
 
