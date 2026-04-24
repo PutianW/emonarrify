@@ -476,10 +476,12 @@ class SynthesizerTrn(nn.Module):
           nn.Linear(gin_channels, n_emotions),
       )
 
-  def forward(self, x, x_lengths, y, y_lengths, sid=None):
+  def forward(self, x, x_lengths, y, y_lengths, sid=None, eid=None):
 
     x, m_p, logs_p, x_mask = self.enc_p(x, x_lengths)
-    if self.n_speakers > 0:
+    if self.n_emotions > 0 and eid is not None:
+      g = self.emb_e(eid).unsqueeze(-1) # [b, h, 1]
+    elif self.n_speakers > 0 and sid is not None:
       g = self.emb_g(sid).unsqueeze(-1) # [b, h, 1]
     else:
       g = None
@@ -516,9 +518,21 @@ class SynthesizerTrn(nn.Module):
     o = self.dec(z_slice, g=g)
     return o, l_length, attn, ids_slice, x_mask, y_mask, (z, z_p, m_p, logs_p, m_q, logs_q)
 
-  def infer(self, x, x_lengths, sid=None, noise_scale=1, length_scale=1, noise_scale_w=1., max_len=None):
+  def infer(self, x, x_lengths, sid=None, noise_scale=1, length_scale=1, noise_scale_w=1., max_len=None,
+            eid=None, emotion_embedding_override=None):
     x, m_p, logs_p, x_mask = self.enc_p(x, x_lengths)
-    if self.n_speakers > 0:
+    if emotion_embedding_override is not None:
+      # Bypass emb_e lookup. Caller supplies a (B, gin_channels) tensor —
+      # used by EmoNarrifyPipeline to inject Phase 2 outputs at inference.
+      override = emotion_embedding_override
+      if override.dim() == 1:
+        override = override.unsqueeze(0)
+      assert override.shape[-1] == self.gin_channels, \
+          f"emotion_embedding_override last dim {override.shape[-1]} != gin_channels {self.gin_channels}"
+      g = override.unsqueeze(-1) # [b, h, 1]
+    elif self.n_emotions > 0 and eid is not None:
+      g = self.emb_e(eid).unsqueeze(-1) # [b, h, 1]
+    elif self.n_speakers > 0 and sid is not None:
       g = self.emb_g(sid).unsqueeze(-1) # [b, h, 1]
     else:
       g = None
