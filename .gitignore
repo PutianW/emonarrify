@@ -10,8 +10,23 @@ data/images/
 weights/*.pt
 weights/*.json
 weights/*/
+
 # Outputs
 outputs/*.wav
+outputs/**/*.wav
+outputs/**/filelists/*.txt
+outputs/**/vits_train.log
+
+# ESD dataset
+ESD/
+
+# Phase 3 / VITS training artifacts
+vits/logs/
+vits/logs/**/*.pth
+weights/vits_vctk/*.pth
+vits/monotonic_align/build/
+vits/monotonic_align/**/*.so
+vits/monotonic_align/core.c
 
 # OS
 .DS_Store
@@ -20,4 +35,10 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.venv/
 CHANGELOG.md
+
+# Secrets
+*.pem
+*.key
+aws_gpu_key.pem
