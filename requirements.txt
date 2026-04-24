@@ -3,3 +3,16 @@ torchvision>=0.15.0
 Pillow>=9.0.0
 numpy>=1.24.0
 soundfile>=0.12.0
+# Phase 3 (VITS) dependencies
+# Pinned upstream versions (Cython==0.29.21, torch==1.6.0, etc.) are
+# incompatible with Python 3.10; use modern unpinned versions.
+# Also requires system package: espeak-ng (apt install espeak-ng)
+# After install: cd vits/monotonic_align && python setup.py build_ext --inplace
+librosa>=0.10.0
+phonemizer>=3.2
+Cython
+tensorboard
+scipy>=1.10
+Unidecode
+matplotlib
+numba

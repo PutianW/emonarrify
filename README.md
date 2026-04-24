@@ -80,6 +80,144 @@ In the first cell of any notebook:
 ```
 Then import and use the project modules directly. **Do not write model logic in the notebook** — keep it in the `.py` files so version control stays clean.
 
+## Phase 3 MVP Workflow (ESD)
+
+This repository now includes a runnable Phase 3 MVP path:
+
+1. **Prepare ESD manifest** (speaker-aware train/val/test split)
+2. **Run Phase 3 stub training** (validates data + exports lookup table)
+3. **Run inference** (normal path or fallback path)
+4. **Run evaluation scaffold** (distribution summary + MOS template)
+
+### 1) Prepare manifest from ESD
+
+```bash
+python data/phase3_prepare_data.py --esd-root ESD --output data/phase3_esd_manifest.jsonl
+```
+
+### 2) Run Phase 3 stub training
+
+```bash
+python data/phase3_train_stub.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --lookup-out weights/emotion_lookup_table.json
+```
+
+### 3) Run inference with fallback (Phase 1 label -> Phase 3 lookup table)
+
+```bash
+python run_inference.py \
+    --image test.jpg \
+    --phase1 weights/phase1_lora/ \
+    --phase3 weights/phase3_tts.pt \
+    --fallback \
+    --output outputs/phase3_fallback.wav
+```
+
+### 4) Evaluate manifest summary (MVP scaffold)
+
+```bash
+python data/phase3_eval_manifest.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --save-json outputs/phase3_manifest_summary.json
+```
+
+### Notes
+
+- `ESD/` is local dataset content and should not be committed to git.
+- Objective metrics (`MCD`, `CLIP-score`) are tracked as next-step evaluation work.
+- Subjective evaluation can start immediately using MOS CSV templates via `create_mos_template` in `emonarrify.phase3.evaluation`.
+
+## AWS / SSH Training (Phase 3)
+
+For long-running training on AWS, use `tmux` and the CLI script(s):
+
+### 1) Start a tmux session
+
+```bash
+tmux new -s phase3
+```
+
+Detach safely with `Ctrl+b`, then `d`.
+Re-attach later:
+
+```bash
+tmux attach -t phase3
+```
+
+### 2) Train MVP backbone (in this repo)
+
+```bash
+PYTHONPATH=. python phase3_train.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --epochs 10 \
+    --batch-size 8 \
+    --num-workers 4 \
+    --save-val-audio
+```
+
+### 3) Launch VITS fine-tuning (vendored VITS repo)
+
+Use this when you want to fine-tune the bundled VITS backbone (see VITS Setup below):
+
+```bash
+PYTHONPATH=. python phase3_train_vits.py \
+    --manifest data/phase3_esd_manifest.jsonl \
+    --vits-repo ./vits \
+    --vits-config ./vits/configs/finetune_emonarrify.json \
+    --run-name emonarrify_phase3_vits
+```
+
+This launcher will:
+- build VITS filelists from `phase3_esd_manifest.jsonl`
+- generate a patched config with train/val filelist paths
+- launch VITS training and stream logs
+- save logs/metadata under `outputs/vits_phase3/`
+
+## VITS Setup (vendored copy)
+
+The `vits/` directory in this repo is a vendored copy of [jaywalnut310/vits](https://github.com/jaywalnut310/vits) (master HEAD, commit `2e561ba`). It is included as a regular directory tree, not a git submodule.
+
+### One-time setup
+
+1. **System package (espeak-ng)** — phonemizer backend, required at runtime:
+   ```bash
+   sudo apt install -y espeak-ng
+   ```
+
+2. **Python deps** — already listed in `requirements.txt` (note: upstream's pinned versions like `torch==1.6.0` are incompatible with Python 3.10; we use modern unpinned versions):
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Compile the monotonic_align Cython kernel** (required for VITS training):
+   ```bash
+   mkdir -p vits/monotonic_align/monotonic_align
+   cd vits/monotonic_align && python setup.py build_ext --inplace
+   ```
+   The compiled `.so` and `core.c` are gitignored.
+
+### Pretrained weights (VCTK 109-speaker)
+
+For fine-tuning ESD's 10 speakers from a VCTK base, download `pretrained_vctk.pth` from the [jaywalnut310/vits README](https://github.com/jaywalnut310/vits#pretrained-models) Google Drive link and place it at:
+
+```
+weights/vits_vctk/pretrained_vctk.pth
+```
+
+Then adapt 109→10 speakers:
+
+```bash
+python tools/adapt_speaker_embedding.py \
+    --src-checkpoint weights/vits_vctk/pretrained_vctk.pth \
+    --src-n-speakers 109 \
+    --dst-n-speakers 10 \
+    --output-checkpoint weights/vits_vctk/G_0_adapted.pth \
+    --init-method mean
+```
+
+`weights/vits_vctk/*.pth` is gitignored — keep these out of the repo.
+
 ## System Context & Task Overview:
 You are an expert AI software engineer assisting me in implementing an MVP (Minimum Viable Product) for a Multimodal Emotional Voice Generation system, tentatively named "Emotional Image Storytelling Fairy".
 
