@@ -10,6 +10,8 @@ data/images/
 weights/*.pt
 weights/*.json
 weights/*/
+*.jsonl
+*.pt
 
 # Outputs
 outputs/*.wav

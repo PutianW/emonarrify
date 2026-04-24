@@ -16,7 +16,7 @@ IDX_TO_EMOTION = {idx: label for idx, label in enumerate(EMOTION_LABELS)}
 # =============================================================================
 # Embedding Dimension (locked at Checkpoint 1)
 # =============================================================================
-D_EMO = 128
+D_EMO = 256
 
 # =============================================================================
 # Paths
@@ -63,9 +63,9 @@ DEFAULT_EMOTION = "neutral"
 # Exported after Phase 3 training. Phase 2 uses these vectors as regression targets.
 #
 #   {
-#     "embedding_dim": 128,                         # must equal D_EMO
+#     "embedding_dim": 256,                         # must equal D_EMO
 #     "embeddings": {
-#       "neutral":  [0.12, -0.03, ...],             # list of 128 floats
+#       "neutral":  [0.12, -0.03, ...],             # list of 256 floats
 #       "happy":    [0.45,  0.21, ...],
 #       "angry":    [...],
 #       "sad":      [...],
