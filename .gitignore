@@ -11,6 +11,7 @@ weights/*.pt
 weights/*.json
 weights/*/
 # Outputs
+outputs/**/*.wav
 outputs/*.wav
 
 # ESD
@@ -24,3 +25,10 @@ Thumbs.db
 .vscode/
 .idea/
 CHANGELOG.md
+
+vits/logs/**/*.pth
+
+.venv/
+
+aws_gpu_key.pem
+

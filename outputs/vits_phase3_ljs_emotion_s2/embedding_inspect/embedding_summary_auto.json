@@ -1,0 +1,782 @@
+[
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_1000.pth",
+    "step": 1000,
+    "iteration": 5,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.0019007291411980987,
+      "std": 0.03482137620449066,
+      "maxabs": 0.03779950365424156,
+      "l2": 1.247175931930542,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.023286163806915283,
+      "std": 0.03794579207897186,
+      "maxabs": 0.0725039467215538,
+      "l2": 0.2790076434612274,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.0010435753501951694,
+      "std": 0.03918253257870674,
+      "maxabs": 0.04134941101074219,
+      "l2": 1.77339506149292,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.003350302577018738,
+      "std": 0.061431288719177246,
+      "maxabs": 0.06632822751998901,
+      "l2": 2.2002413272857666,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.024807165004312993,
+      "min_pairwise_l2": 0.02149510569870472,
+      "max_pairwise_l2": 0.029581531882286072
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.046643572859466076,
+      "min_pairwise_l2": 0.02310502901673317,
+      "max_pairwise_l2": 0.06839597970247269
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_1000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_1000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_2000.pth",
+    "step": 2000,
+    "iteration": 9,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.00331690046004951,
+      "std": 0.06051456555724144,
+      "maxabs": 0.06477183848619461,
+      "l2": 2.167440176010132,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.03690166398882866,
+      "std": 0.06113239377737045,
+      "maxabs": 0.10007712244987488,
+      "l2": 0.44745829701423645,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.0018358177039772272,
+      "std": 0.0683075562119484,
+      "maxabs": 0.07067447155714035,
+      "l2": 3.0916085243225098,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.007474320940673351,
+      "std": 0.13666659593582153,
+      "maxabs": 0.14397934079170227,
+      "l2": 4.894931793212891,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.04037929493933916,
+      "min_pairwise_l2": 0.02324451319873333,
+      "max_pairwise_l2": 0.07210247963666916
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.0891530342400074,
+      "min_pairwise_l2": 0.025821153074502945,
+      "max_pairwise_l2": 0.1535218507051468
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_2000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_2000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_3000.pth",
+    "step": 3000,
+    "iteration": 13,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.004592439159750938,
+      "std": 0.08368213474750519,
+      "maxabs": 0.0896279364824295,
+      "l2": 2.9972403049468994,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.04880432412028313,
+      "std": 0.08171679079532623,
+      "maxabs": 0.12375175952911377,
+      "l2": 0.5964077115058899,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.0025861822068691254,
+      "std": 0.09580900520086288,
+      "maxabs": 0.09832391887903214,
+      "l2": 4.336341857910156,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.012420187704265118,
+      "std": 0.22694897651672363,
+      "maxabs": 0.23580217361450195,
+      "l2": 8.128556251525879,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.06528062298893929,
+      "min_pairwise_l2": 0.030338089913129807,
+      "max_pairwise_l2": 0.12730850279331207
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.1285771269351244,
+      "min_pairwise_l2": 0.03393443301320076,
+      "max_pairwise_l2": 0.24717923998832703
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_3000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_3000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_4000.pth",
+    "step": 4000,
+    "iteration": 17,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.005483062006533146,
+      "std": 0.10018156468868256,
+      "maxabs": 0.10989061743021011,
+      "l2": 3.5881705284118652,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.05686410516500473,
+      "std": 0.09578695893287659,
+      "maxabs": 0.14138036966323853,
+      "l2": 0.6979767680168152,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.003217154648154974,
+      "std": 0.11908165365457535,
+      "maxabs": 0.12222346663475037,
+      "l2": 5.389671325683594,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.016894105821847916,
+      "std": 0.3090134263038635,
+      "maxabs": 0.32267168164253235,
+      "l2": 11.067795753479004,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.12068221122026443,
+      "min_pairwise_l2": 0.06298700720071793,
+      "max_pairwise_l2": 0.2063945233821869
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.18916365280747413,
+      "min_pairwise_l2": 0.06791233271360397,
+      "max_pairwise_l2": 0.39906051754951477
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_4000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_4000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_5000.pth",
+    "step": 5000,
+    "iteration": 21,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.006100542843341827,
+      "std": 0.11188813298940659,
+      "maxabs": 0.1274060755968094,
+      "l2": 4.007415771484375,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.06226561591029167,
+      "std": 0.10532064735889435,
+      "maxabs": 0.15359394252300262,
+      "l2": 0.7666063904762268,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.003740617772564292,
+      "std": 0.13844695687294006,
+      "maxabs": 0.14297574758529663,
+      "l2": 6.26615047454834,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.020683705806732178,
+      "std": 0.3787496089935303,
+      "maxabs": 0.40155965089797974,
+      "l2": 13.565462112426758,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.1911889687180519,
+      "min_pairwise_l2": 0.116939477622509,
+      "max_pairwise_l2": 0.3048434555530548
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.29617210030555724,
+      "min_pairwise_l2": 0.12998539209365845,
+      "max_pairwise_l2": 0.5727288722991943
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_5000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_5000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_6000.pth",
+    "step": 6000,
+    "iteration": 25,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.006578146014362574,
+      "std": 0.12113223224878311,
+      "maxabs": 0.14389365911483765,
+      "l2": 4.33845329284668,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.06632503122091293,
+      "std": 0.1124754548072815,
+      "maxabs": 0.16117537021636963,
+      "l2": 0.8181312680244446,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.004174429457634687,
+      "std": 0.15414904057979584,
+      "maxabs": 0.16024179756641388,
+      "l2": 6.97684383392334,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.02394760772585869,
+      "std": 0.4383000135421753,
+      "maxabs": 0.4703338146209717,
+      "l2": 15.698369026184082,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.2678985744714737,
+      "min_pairwise_l2": 0.17740921676158905,
+      "max_pairwise_l2": 0.4019441306591034
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.3796947687864304,
+      "min_pairwise_l2": 0.1939217895269394,
+      "max_pairwise_l2": 0.65671706199646
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_6000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_6000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_7000.pth",
+    "step": 7000,
+    "iteration": 29,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.007090441882610321,
+      "std": 0.1310911774635315,
+      "maxabs": 0.16229833662509918,
+      "l2": 4.6950860023498535,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.07076221704483032,
+      "std": 0.12029711902141571,
+      "maxabs": 0.1702757477760315,
+      "l2": 0.874457597732544,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.004622928332537413,
+      "std": 0.17066733539104462,
+      "maxabs": 0.1783180981874466,
+      "l2": 7.724470138549805,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.027653926983475685,
+      "std": 0.5064387321472168,
+      "maxabs": 0.5422103404998779,
+      "l2": 18.13882827758789,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.34949163943529127,
+      "min_pairwise_l2": 0.2133227437734604,
+      "max_pairwise_l2": 0.5502650737762451
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.4323917210102081,
+      "min_pairwise_l2": 0.25307223200798035,
+      "max_pairwise_l2": 0.740973174571991
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_7000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_7000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_8000.pth",
+    "step": 8000,
+    "iteration": 33,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.007660167757421732,
+      "std": 0.14246313273906708,
+      "maxabs": 0.1800229549407959,
+      "l2": 5.102290153503418,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.07589026540517807,
+      "std": 0.12932896614074707,
+      "maxabs": 0.18172220885753632,
+      "l2": 0.9395139813423157,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.005123788956552744,
+      "std": 0.18941010534763336,
+      "maxabs": 0.1979309469461441,
+      "l2": 8.57276725769043,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.03214363008737564,
+      "std": 0.5900861024856567,
+      "maxabs": 0.6373907327651978,
+      "l2": 21.134626388549805,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.43609092235565183,
+      "min_pairwise_l2": 0.2767599821090698,
+      "max_pairwise_l2": 0.6852806210517883
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.538750422000885,
+      "min_pairwise_l2": 0.3446909189224243,
+      "max_pairwise_l2": 0.8844432830810547
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_8000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_8000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_9000.pth",
+    "step": 9000,
+    "iteration": 37,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.00815930962562561,
+      "std": 0.15267188847064972,
+      "maxabs": 0.1963551938533783,
+      "l2": 5.467819690704346,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.08035782724618912,
+      "std": 0.1371321678161621,
+      "maxabs": 0.1892782598733902,
+      "l2": 0.9958409667015076,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.005554214585572481,
+      "std": 0.20599211752414703,
+      "maxabs": 0.21551208198070526,
+      "l2": 9.323251724243164,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.03629095107316971,
+      "std": 0.6686252355575562,
+      "maxabs": 0.7213296890258789,
+      "l2": 23.947341918945312,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.5280171513557435,
+      "min_pairwise_l2": 0.30227723717689514,
+      "max_pairwise_l2": 0.8311212062835693
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.6143178343772888,
+      "min_pairwise_l2": 0.3821297287940979,
+      "max_pairwise_l2": 0.9620792865753174
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_9000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_9000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_10000.pth",
+    "step": 10000,
+    "iteration": 41,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.00850428082048893,
+      "std": 0.1603577584028244,
+      "maxabs": 0.21057596802711487,
+      "l2": 5.742957592010498,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.0833849161863327,
+      "std": 0.14239513874053955,
+      "maxabs": 0.19590285420417786,
+      "l2": 1.0338764190673828,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.00584182096645236,
+      "std": 0.21757358312606812,
+      "maxabs": 0.22822825610637665,
+      "l2": 9.847400665283203,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.03921723738312721,
+      "std": 0.7258589267730713,
+      "maxabs": 0.7902870178222656,
+      "l2": 25.996864318847656,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.6390295714139939,
+      "min_pairwise_l2": 0.3497629761695862,
+      "max_pairwise_l2": 0.9978262186050415
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.7285507410764694,
+      "min_pairwise_l2": 0.4597218930721283,
+      "max_pairwise_l2": 1.1223703622817993
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_10000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_10000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_11000.pth",
+    "step": 11000,
+    "iteration": 45,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.008793764747679234,
+      "std": 0.16709619760513306,
+      "maxabs": 0.22523149847984314,
+      "l2": 5.984155654907227,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.08578565716743469,
+      "std": 0.14654822647571564,
+      "maxabs": 0.199896439909935,
+      "l2": 1.0639294385910034,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.006078846286982298,
+      "std": 0.22714877128601074,
+      "maxabs": 0.2397395372390747,
+      "l2": 10.28075122833252,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.04167792201042175,
+      "std": 0.7742512226104736,
+      "maxabs": 0.855448842048645,
+      "l2": 27.729751586914062,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.7549616456031799,
+      "min_pairwise_l2": 0.4037988781929016,
+      "max_pairwise_l2": 1.1681790351867676
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.8394002854824066,
+      "min_pairwise_l2": 0.5202958583831787,
+      "max_pairwise_l2": 1.2769941091537476
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_11000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_11000"
+  },
+  {
+    "checkpoint": "/home/ubuntu/emonarrify/vits/logs/emonarrify_phase3_vits_ljs_emotion_s2/G_12000.pth",
+    "step": 12000,
+    "iteration": 49,
+    "emb_e": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.009022186510264874,
+      "std": 0.17282326519489288,
+      "maxabs": 0.24002905189990997,
+      "l2": 6.189119815826416,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_e_lora_A": {
+      "shape": [
+        5,
+        8
+      ],
+      "mean": 0.08763711154460907,
+      "std": 0.14965657889842987,
+      "maxabs": 0.20266713201999664,
+      "l2": 1.0865988731384277,
+      "nonzero": 40,
+      "numel": 40
+    },
+    "emb_e_lora_B": {
+      "shape": [
+        256,
+        8
+      ],
+      "mean": -0.006262238137423992,
+      "std": 0.2345028966665268,
+      "maxabs": 0.2487156242132187,
+      "l2": 10.613581657409668,
+      "nonzero": 2048,
+      "numel": 2048
+    },
+    "effective_embedding": {
+      "shape": [
+        5,
+        256
+      ],
+      "mean": -0.043587200343608856,
+      "std": 0.8124954700469971,
+      "maxabs": 0.9069655537605286,
+      "l2": 29.099178314208984,
+      "nonzero": 1280,
+      "numel": 1280
+    },
+    "emb_pairwise_l2": {
+      "mean_pairwise_l2": 0.8706775069236755,
+      "min_pairwise_l2": 0.4586978554725647,
+      "max_pairwise_l2": 1.3405871391296387
+    },
+    "effective_pairwise_l2": {
+      "mean_pairwise_l2": 0.9320044338703155,
+      "min_pairwise_l2": 0.5742385983467102,
+      "max_pairwise_l2": 1.4011259078979492
+    },
+    "pca_png": "/home/ubuntu/emonarrify/outputs/vits_phase3_ljs_emotion_s2/embedding_inspect/G_12000_pca.png",
+    "inference_dir": "/home/ubuntu/emonarrify/outputs/vits_ckpt_compare_auto/s2_auto/G_12000"
+  }
+]
