@@ -392,7 +392,7 @@ class SynthesizerTrn(nn.Module):
   Synthesizer for Training
   """
 
-  def __init__(self, 
+  def __init__(self,
     n_vocab,
     spec_channels,
     segment_size,
@@ -403,13 +403,14 @@ class SynthesizerTrn(nn.Module):
     n_layers,
     kernel_size,
     p_dropout,
-    resblock, 
-    resblock_kernel_sizes, 
-    resblock_dilation_sizes, 
-    upsample_rates, 
-    upsample_initial_channel, 
+    resblock,
+    resblock_kernel_sizes,
+    resblock_dilation_sizes,
+    upsample_rates,
+    upsample_initial_channel,
     upsample_kernel_sizes,
     n_speakers=0,
+    n_emotions=0,
     gin_channels=0,
     use_sdp=True,
     **kwargs):
@@ -432,6 +433,7 @@ class SynthesizerTrn(nn.Module):
     self.upsample_kernel_sizes = upsample_kernel_sizes
     self.segment_size = segment_size
     self.n_speakers = n_speakers
+    self.n_emotions = n_emotions
     self.gin_channels = gin_channels
 
     self.use_sdp = use_sdp
@@ -455,6 +457,24 @@ class SynthesizerTrn(nn.Module):
 
     if n_speakers > 1:
       self.emb_g = nn.Embedding(n_speakers, gin_channels)
+
+    if n_emotions > 0:
+      # Emotion-conditioning channel for EmoNarrify Phase 3 (new method).
+      # Replaces emb_g as the source of g (global conditioning) when
+      # n_speakers=0. Orthogonal init gives 5 distinct starting directions
+      # so the L_ortho hinge penalty (threshold 0.3) starts at zero, letting
+      # L_cls drive the early separation signal.
+      self.emb_e = nn.Embedding(n_emotions, gin_channels)
+      nn.init.orthogonal_(self.emb_e.weight, gain=1.0)
+      # Classifier head consumes emb_e[eid] directly (256 -> 256 -> ReLU
+      # -> Dropout(0.1) -> 5 logits). Forwarded only in train_ms.py outside
+      # of forward()/infer() to keep upstream signatures intact.
+      self.emotion_classifier_head = nn.Sequential(
+          nn.Linear(gin_channels, gin_channels),
+          nn.ReLU(),
+          nn.Dropout(0.1),
+          nn.Linear(gin_channels, n_emotions),
+      )
 
   def forward(self, x, x_lengths, y, y_lengths, sid=None):
 
