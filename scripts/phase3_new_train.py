@@ -1,5 +1,14 @@
 """Phase 3 (new) training: emotion-only VITS finetune from VCTK pretrained.
 
+TODO: G_<max_steps>.pth off-by-one — the save_interval check
+  `if global_step % save_int == 0` happens BEFORE `global_step += 1`,
+  so at step 19999 the body runs (no save: 19999 % 2000 != 0), then
+  global_step becomes 20000 and the for-loop top breaks. Result: no
+  G_20000.pth even though training reached max_steps_total. Stage D Run
+  1 confirmed this (last save G_18000). Fix in Stage G prep: change
+  save check to `if global_step > 0 and (global_step % save_int == 0
+  or global_step == max_steps_total): save`.
+
 Implements the spec from /home/ubuntu/.claude/plans/andrew-floofy-pancake.md:
   L_total^(G) = L_VITS_upstream + lambda_cls * L_cls + lambda_ortho * L_ortho
 
