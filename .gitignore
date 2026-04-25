@@ -19,6 +19,10 @@ outputs/**/*.wav
 outputs/**/filelists/*.txt
 outputs/**/vits_train.log
 
+# Phase 3 (new) pre-cleaned filelists — generated artifact, regenerable
+# from raw filelists via scripts/phase3_new_pre_clean_text.py
+data/filelists/*.cleaned.txt
+
 # ESD dataset
 ESD/
 

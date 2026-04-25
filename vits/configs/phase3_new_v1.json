@@ -22,8 +22,8 @@
     "ortho_threshold": 0.3
   },
   "data": {
-    "training_files": "data/filelists/phase3_new_train.txt",
-    "validation_files": "data/filelists/phase3_new_val.txt",
+    "training_files": "data/filelists/phase3_new_train.cleaned.txt",
+    "validation_files": "data/filelists/phase3_new_val.cleaned.txt",
     "text_cleaners": ["english_cleaners2"],
     "max_wav_value": 32768.0,
     "sampling_rate": 16000,
@@ -36,7 +36,7 @@
     "add_blank": true,
     "n_speakers": 0,
     "n_emotions": 5,
-    "cleaned_text": false
+    "cleaned_text": true
   },
   "model": {
     "inter_channels": 192,
