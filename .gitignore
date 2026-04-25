@@ -12,12 +12,17 @@ weights/*.json
 weights/*/
 *.jsonl
 *.pt
+# Phase 3 -> Phase 2 contract artifact: canonical exported lookup table.
+# Small (~35KB), checked in so Phase 2 retrain has a stable known target.
+!weights/emotion_lookup_table.json
 
 # Outputs
 outputs/*.wav
 outputs/**/*.wav
 outputs/**/filelists/*.txt
 outputs/**/vits_train.log
+# Stage D / Run 1 listening evaluation samples (committed for reviewers)
+!outputs/phase3_new_v1_listening/*.wav
 
 # Phase 3 (new) pre-cleaned filelists — generated artifact, regenerable
 # from raw filelists via scripts/phase3_new_pre_clean_text.py
