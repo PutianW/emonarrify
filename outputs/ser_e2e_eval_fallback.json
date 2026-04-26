@@ -1,0 +1,2026 @@
+{
+  "config": {
+    "pipeline": "EmoNarrifyPipeline use_fallback=True (Phase 2 bypassed, Phase 3 driven by lookup_table[Phase 1 emotion_label])",
+    "fallback_mode": true,
+    "ser_model": "superb/wav2vec2-base-superb-er",
+    "ser_label_map": {
+      "neu": "neutral",
+      "hap": "happy",
+      "ang": "angry",
+      "sad": "sad"
+    },
+    "holdout_jsonl": "data/splits/phase1_holdout.jsonl",
+    "ser_caveat": "4-class IEMOCAP (neu/hap/ang/sad); 'surprise' GT routes to nearest 4-class label since SER has no surprise output node."
+  },
+  "n_total": 56,
+  "overall_accuracy": 0.375,
+  "macro_accuracy": 0.21323529411764705,
+  "per_class_accuracy": {
+    "neutral": {
+      "n": 34,
+      "correct": 13,
+      "acc": 0.38235294117647056
+    },
+    "happy": {
+      "n": 17,
+      "correct": 8,
+      "acc": 0.47058823529411764
+    },
+    "angry": {
+      "n": 0,
+      "correct": 0,
+      "acc": null
+    },
+    "sad": {
+      "n": 2,
+      "correct": 0,
+      "acc": 0.0
+    },
+    "surprise": {
+      "n": 3,
+      "correct": 0,
+      "acc": 0.0
+    }
+  },
+  "confusion_matrix": {
+    "neutral": {
+      "happy": 21,
+      "neutral": 13
+    },
+    "happy": {
+      "happy": 8,
+      "neutral": 9
+    },
+    "angry": {},
+    "sad": {
+      "happy": 1,
+      "neutral": 1
+    },
+    "surprise": {
+      "happy": 2,
+      "neutral": 1
+    }
+  },
+  "samples": [
+    {
+      "idx": 0,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/199337365.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/000_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.072,
+      "audio_peak": 0.20287680625915527,
+      "audio_rms": 0.023532381281256676,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6522755026817322,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6522755026817322
+        },
+        {
+          "label": "neu",
+          "score": 0.33794790506362915
+        },
+        {
+          "label": "ang",
+          "score": 0.008727598004043102
+        },
+        {
+          "label": "sad",
+          "score": 0.001048956997692585
+        }
+      ]
+    },
+    {
+      "idx": 1,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/4958363182.jpg",
+      "gt_label": "sad",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/001_sad.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.136,
+      "audio_peak": 0.17056603729724884,
+      "audio_rms": 0.023014778271317482,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6020961999893188,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6020961999893188
+        },
+        {
+          "label": "neu",
+          "score": 0.3880767524242401
+        },
+        {
+          "label": "sad",
+          "score": 0.005286166910082102
+        },
+        {
+          "label": "ang",
+          "score": 0.0045409416779875755
+        }
+      ]
+    },
+    {
+      "idx": 2,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/18541185.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/002_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.328,
+      "audio_peak": 0.16189227998256683,
+      "audio_rms": 0.02071734331548214,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7783724665641785,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7783724665641785
+        },
+        {
+          "label": "neu",
+          "score": 0.20798854529857635
+        },
+        {
+          "label": "ang",
+          "score": 0.012223243713378906
+        },
+        {
+          "label": "sad",
+          "score": 0.001415797509253025
+        }
+      ]
+    },
+    {
+      "idx": 3,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/6840865731.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/003_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.088,
+      "audio_peak": 0.17436255514621735,
+      "audio_rms": 0.02303471229970455,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6637025475502014,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6637025475502014
+        },
+        {
+          "label": "neu",
+          "score": 0.32068002223968506
+        },
+        {
+          "label": "ang",
+          "score": 0.013841334730386734
+        },
+        {
+          "label": "sad",
+          "score": 0.0017761659109964967
+        }
+      ]
+    },
+    {
+      "idx": 4,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/183262531.jpg",
+      "gt_label": "surprise",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/004_surprise.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.008,
+      "audio_peak": 0.20106388628482819,
+      "audio_rms": 0.021946653723716736,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.796353816986084,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.796353816986084
+        },
+        {
+          "label": "neu",
+          "score": 0.2014089673757553
+        },
+        {
+          "label": "ang",
+          "score": 0.0016953725134953856
+        },
+        {
+          "label": "sad",
+          "score": 0.0005417674547061324
+        }
+      ]
+    },
+    {
+      "idx": 5,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4552055168.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/005_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.024,
+      "audio_peak": 0.2241208702325821,
+      "audio_rms": 0.02109459415078163,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6135140061378479,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6135140061378479
+        },
+        {
+          "label": "neu",
+          "score": 0.3548056483268738
+        },
+        {
+          "label": "ang",
+          "score": 0.02800494246184826
+        },
+        {
+          "label": "sad",
+          "score": 0.0036754205357283354
+        }
+      ]
+    },
+    {
+      "idx": 6,
+      "image_path": "/home/ubuntu/emonarrify/data/images/test/21728852.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/006_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.152,
+      "audio_peak": 0.15513114631175995,
+      "audio_rms": 0.02052159421145916,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.547958254814148,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.547958254814148
+        },
+        {
+          "label": "hap",
+          "score": 0.43832650780677795
+        },
+        {
+          "label": "sad",
+          "score": 0.009103632532060146
+        },
+        {
+          "label": "ang",
+          "score": 0.004611663985997438
+        }
+      ]
+    },
+    {
+      "idx": 7,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/73582242.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/007_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.344,
+      "audio_peak": 0.17692716419696808,
+      "audio_rms": 0.023825740441679955,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6993969082832336,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6993969082832336
+        },
+        {
+          "label": "neu",
+          "score": 0.28841614723205566
+        },
+        {
+          "label": "ang",
+          "score": 0.010110405273735523
+        },
+        {
+          "label": "sad",
+          "score": 0.00207651243545115
+        }
+      ]
+    },
+    {
+      "idx": 8,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/24169885.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/008_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.344,
+      "audio_peak": 0.19307422637939453,
+      "audio_rms": 0.02225349470973015,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7222446799278259,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7222446799278259
+        },
+        {
+          "label": "neu",
+          "score": 0.2717890441417694
+        },
+        {
+          "label": "ang",
+          "score": 0.0051302220672369
+        },
+        {
+          "label": "sad",
+          "score": 0.0008360588108189404
+        }
+      ]
+    },
+    {
+      "idx": 9,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/722389045.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/009_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.28,
+      "audio_peak": 0.12817324697971344,
+      "audio_rms": 0.018753664568066597,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.550609290599823,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.550609290599823
+        },
+        {
+          "label": "neu",
+          "score": 0.44621455669403076
+        },
+        {
+          "label": "sad",
+          "score": 0.001977008068934083
+        },
+        {
+          "label": "ang",
+          "score": 0.0011991430073976517
+        }
+      ]
+    },
+    {
+      "idx": 10,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/2587259493.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/010_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.88,
+      "audio_peak": 0.20681379735469818,
+      "audio_rms": 0.02365628257393837,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7748889327049255,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7748889327049255
+        },
+        {
+          "label": "hap",
+          "score": 0.22008629143238068
+        },
+        {
+          "label": "ang",
+          "score": 0.004342461004853249
+        },
+        {
+          "label": "sad",
+          "score": 0.0006822986761108041
+        }
+      ]
+    },
+    {
+      "idx": 11,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/181895681.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/011_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.248,
+      "audio_peak": 0.2425294667482376,
+      "audio_rms": 0.021992117166519165,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7742131948471069,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7742131948471069
+        },
+        {
+          "label": "hap",
+          "score": 0.21936888992786407
+        },
+        {
+          "label": "ang",
+          "score": 0.0051064579747617245
+        },
+        {
+          "label": "sad",
+          "score": 0.0013113993918523192
+        }
+      ]
+    },
+    {
+      "idx": 12,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/21802170.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/012_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.12,
+      "audio_peak": 0.20315654575824738,
+      "audio_rms": 0.023308951407670975,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6822330951690674,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6822330951690674
+        },
+        {
+          "label": "neu",
+          "score": 0.3065609931945801
+        },
+        {
+          "label": "ang",
+          "score": 0.006833269260823727
+        },
+        {
+          "label": "sad",
+          "score": 0.004372583702206612
+        }
+      ]
+    },
+    {
+      "idx": 13,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/2165659018.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/013_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.264,
+      "audio_peak": 0.17103342711925507,
+      "audio_rms": 0.022617710754275322,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7593809962272644,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7593809962272644
+        },
+        {
+          "label": "neu",
+          "score": 0.2326226681470871
+        },
+        {
+          "label": "ang",
+          "score": 0.005531783681362867
+        },
+        {
+          "label": "sad",
+          "score": 0.002464472083374858
+        }
+      ]
+    },
+    {
+      "idx": 14,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/5057730199.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/014_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.96,
+      "audio_peak": 0.2484254688024521,
+      "audio_rms": 0.021730685606598854,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5080736875534058,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5080736875534058
+        },
+        {
+          "label": "hap",
+          "score": 0.4831030070781708
+        },
+        {
+          "label": "ang",
+          "score": 0.007986841723322868
+        },
+        {
+          "label": "sad",
+          "score": 0.0008363543311133981
+        }
+      ]
+    },
+    {
+      "idx": 15,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/7782458992.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/015_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.608,
+      "audio_peak": 0.19524970650672913,
+      "audio_rms": 0.021436087787151337,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5553112626075745,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5553112626075745
+        },
+        {
+          "label": "hap",
+          "score": 0.43426084518432617
+        },
+        {
+          "label": "ang",
+          "score": 0.008153471164405346
+        },
+        {
+          "label": "sad",
+          "score": 0.0022744135931134224
+        }
+      ]
+    },
+    {
+      "idx": 16,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/205858578.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/016_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.544,
+      "audio_peak": 0.15663641691207886,
+      "audio_rms": 0.02103446051478386,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.70406174659729,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.70406174659729
+        },
+        {
+          "label": "neu",
+          "score": 0.2832919955253601
+        },
+        {
+          "label": "ang",
+          "score": 0.010754832066595554
+        },
+        {
+          "label": "sad",
+          "score": 0.0018914681859314442
+        }
+      ]
+    },
+    {
+      "idx": 17,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/2509436906.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/017_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.216,
+      "audio_peak": 0.15406006574630737,
+      "audio_rms": 0.022651994600892067,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6881706714630127,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6881706714630127
+        },
+        {
+          "label": "neu",
+          "score": 0.29800108075141907
+        },
+        {
+          "label": "ang",
+          "score": 0.011126123368740082
+        },
+        {
+          "label": "sad",
+          "score": 0.002702087163925171
+        }
+      ]
+    },
+    {
+      "idx": 18,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/754293869.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/018_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.376,
+      "audio_peak": 0.13856767117977142,
+      "audio_rms": 0.019483795389533043,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.734074592590332,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.734074592590332
+        },
+        {
+          "label": "hap",
+          "score": 0.2551848888397217
+        },
+        {
+          "label": "ang",
+          "score": 0.007223984692245722
+        },
+        {
+          "label": "sad",
+          "score": 0.003516513155773282
+        }
+      ]
+    },
+    {
+      "idx": 19,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/4235224330.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/019_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.8,
+      "audio_peak": 0.16803890466690063,
+      "audio_rms": 0.02059915103018284,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5443875789642334,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5443875789642334
+        },
+        {
+          "label": "hap",
+          "score": 0.40649160742759705
+        },
+        {
+          "label": "ang",
+          "score": 0.048765603452920914
+        },
+        {
+          "label": "sad",
+          "score": 0.0003551235713530332
+        }
+      ]
+    },
+    {
+      "idx": 20,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/190620212.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/020_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.056,
+      "audio_peak": 0.18359054625034332,
+      "audio_rms": 0.024606846272945404,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5138018131256104,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5138018131256104
+        },
+        {
+          "label": "neu",
+          "score": 0.47102609276771545
+        },
+        {
+          "label": "ang",
+          "score": 0.01154492050409317
+        },
+        {
+          "label": "sad",
+          "score": 0.0036271577700972557
+        }
+      ]
+    },
+    {
+      "idx": 21,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4379384595.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/021_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.12,
+      "audio_peak": 0.2102917730808258,
+      "audio_rms": 0.022653765976428986,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.530901312828064,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.530901312828064
+        },
+        {
+          "label": "hap",
+          "score": 0.4290914237499237
+        },
+        {
+          "label": "ang",
+          "score": 0.038681332021951675
+        },
+        {
+          "label": "sad",
+          "score": 0.00132585724350065
+        }
+      ]
+    },
+    {
+      "idx": 22,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/718451588.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/022_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.976,
+      "audio_peak": 0.22272369265556335,
+      "audio_rms": 0.02269389107823372,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7473893761634827,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7473893761634827
+        },
+        {
+          "label": "neu",
+          "score": 0.25041383504867554
+        },
+        {
+          "label": "ang",
+          "score": 0.0017747480887919664
+        },
+        {
+          "label": "sad",
+          "score": 0.00042205917998217046
+        }
+      ]
+    },
+    {
+      "idx": 23,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/754293885.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/023_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.944,
+      "audio_peak": 0.23281186819076538,
+      "audio_rms": 0.02501841075718403,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6308391094207764,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6308391094207764
+        },
+        {
+          "label": "neu",
+          "score": 0.36468473076820374
+        },
+        {
+          "label": "ang",
+          "score": 0.003950595855712891
+        },
+        {
+          "label": "sad",
+          "score": 0.0005255225114524364
+        }
+      ]
+    },
+    {
+      "idx": 24,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/754239601.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/024_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.688,
+      "audio_peak": 0.1378272920846939,
+      "audio_rms": 0.02220197767019272,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6591190695762634,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6591190695762634
+        },
+        {
+          "label": "neu",
+          "score": 0.3356736898422241
+        },
+        {
+          "label": "ang",
+          "score": 0.0043480354361236095
+        },
+        {
+          "label": "sad",
+          "score": 0.00085920823039487
+        }
+      ]
+    },
+    {
+      "idx": 25,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4220404132.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/025_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.04,
+      "audio_peak": 0.2031516581773758,
+      "audio_rms": 0.021388787776231766,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7206432819366455,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7206432819366455
+        },
+        {
+          "label": "hap",
+          "score": 0.27557164430618286
+        },
+        {
+          "label": "ang",
+          "score": 0.0019880603067576885
+        },
+        {
+          "label": "sad",
+          "score": 0.0017970503540709615
+        }
+      ]
+    },
+    {
+      "idx": 26,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/4309575031.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/026_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.992,
+      "audio_peak": 0.17377427220344543,
+      "audio_rms": 0.021397046744823456,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.8928999900817871,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.8928999900817871
+        },
+        {
+          "label": "hap",
+          "score": 0.09915804117918015
+        },
+        {
+          "label": "ang",
+          "score": 0.006463333033025265
+        },
+        {
+          "label": "sad",
+          "score": 0.001478569582104683
+        }
+      ]
+    },
+    {
+      "idx": 27,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/2639298852.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/027_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.072,
+      "audio_peak": 0.13658995926380157,
+      "audio_rms": 0.0206799004226923,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5068587064743042,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5068587064743042
+        },
+        {
+          "label": "hap",
+          "score": 0.4917340874671936
+        },
+        {
+          "label": "ang",
+          "score": 0.0010743841994553804
+        },
+        {
+          "label": "sad",
+          "score": 0.00033294520108029246
+        }
+      ]
+    },
+    {
+      "idx": 28,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/19661283.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/028_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.008,
+      "audio_peak": 0.12284037470817566,
+      "audio_rms": 0.018999597057700157,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6849187612533569,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6849187612533569
+        },
+        {
+          "label": "neu",
+          "score": 0.3076803386211395
+        },
+        {
+          "label": "ang",
+          "score": 0.003943384159356356
+        },
+        {
+          "label": "sad",
+          "score": 0.0034575755707919598
+        }
+      ]
+    },
+    {
+      "idx": 29,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/718003894.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/029_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.312,
+      "audio_peak": 0.16854725778102875,
+      "audio_rms": 0.021561697125434875,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6865804195404053,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6865804195404053
+        },
+        {
+          "label": "hap",
+          "score": 0.3090512454509735
+        },
+        {
+          "label": "ang",
+          "score": 0.0033108247444033623
+        },
+        {
+          "label": "sad",
+          "score": 0.0010574434418231249
+        }
+      ]
+    },
+    {
+      "idx": 30,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4375281540.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/030_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.944,
+      "audio_peak": 0.1611338108778,
+      "audio_rms": 0.020655900239944458,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6783735752105713,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6783735752105713
+        },
+        {
+          "label": "neu",
+          "score": 0.31651026010513306
+        },
+        {
+          "label": "ang",
+          "score": 0.0037299622781574726
+        },
+        {
+          "label": "sad",
+          "score": 0.0013861272018402815
+        }
+      ]
+    },
+    {
+      "idx": 31,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/6631124129.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/031_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.88,
+      "audio_peak": 0.16053606569766998,
+      "audio_rms": 0.022582324221730232,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5633587837219238,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5633587837219238
+        },
+        {
+          "label": "neu",
+          "score": 0.4179304242134094
+        },
+        {
+          "label": "ang",
+          "score": 0.014273138716816902
+        },
+        {
+          "label": "sad",
+          "score": 0.004437665920704603
+        }
+      ]
+    },
+    {
+      "idx": 32,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/241173854.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/032_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.72,
+      "audio_peak": 0.1958281397819519,
+      "audio_rms": 0.02108514867722988,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6491550207138062,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6491550207138062
+        },
+        {
+          "label": "neu",
+          "score": 0.33896031975746155
+        },
+        {
+          "label": "ang",
+          "score": 0.009796658530831337
+        },
+        {
+          "label": "sad",
+          "score": 0.0020879246294498444
+        }
+      ]
+    },
+    {
+      "idx": 33,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/7040085.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/033_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.312,
+      "audio_peak": 0.19386066496372223,
+      "audio_rms": 0.02367732860147953,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6065384149551392,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6065384149551392
+        },
+        {
+          "label": "neu",
+          "score": 0.38063347339630127
+        },
+        {
+          "label": "sad",
+          "score": 0.007828956469893456
+        },
+        {
+          "label": "ang",
+          "score": 0.004999090451747179
+        }
+      ]
+    },
+    {
+      "idx": 34,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/316858152.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/034_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.44,
+      "audio_peak": 0.16861481964588165,
+      "audio_rms": 0.022930096834897995,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6051492691040039,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6051492691040039
+        },
+        {
+          "label": "neu",
+          "score": 0.38737455010414124
+        },
+        {
+          "label": "ang",
+          "score": 0.005249761510640383
+        },
+        {
+          "label": "sad",
+          "score": 0.002226416952908039
+        }
+      ]
+    },
+    {
+      "idx": 35,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/1530549526.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/035_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.264,
+      "audio_peak": 0.3009611964225769,
+      "audio_rms": 0.020718831568956375,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7602320313453674,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7602320313453674
+        },
+        {
+          "label": "hap",
+          "score": 0.23573528230190277
+        },
+        {
+          "label": "ang",
+          "score": 0.0024747559800744057
+        },
+        {
+          "label": "sad",
+          "score": 0.001557911396957934
+        }
+      ]
+    },
+    {
+      "idx": 36,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/449738112.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/036_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.344,
+      "audio_peak": 0.2606704533100128,
+      "audio_rms": 0.02144973911345005,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7095130681991577,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7095130681991577
+        },
+        {
+          "label": "neu",
+          "score": 0.2849596440792084
+        },
+        {
+          "label": "sad",
+          "score": 0.004829079378396273
+        },
+        {
+          "label": "ang",
+          "score": 0.0006981923361308873
+        }
+      ]
+    },
+    {
+      "idx": 37,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/2014831.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/037_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.64,
+      "audio_peak": 0.2202017903327942,
+      "audio_rms": 0.023361846804618835,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6650715470314026,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6650715470314026
+        },
+        {
+          "label": "hap",
+          "score": 0.31310349702835083
+        },
+        {
+          "label": "ang",
+          "score": 0.020004235208034515
+        },
+        {
+          "label": "sad",
+          "score": 0.0018207081593573093
+        }
+      ]
+    },
+    {
+      "idx": 38,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/2638830419.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/038_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.12,
+      "audio_peak": 0.16133177280426025,
+      "audio_rms": 0.021695861592888832,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6330614686012268,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6330614686012268
+        },
+        {
+          "label": "hap",
+          "score": 0.3376823961734772
+        },
+        {
+          "label": "ang",
+          "score": 0.025744901970028877
+        },
+        {
+          "label": "sad",
+          "score": 0.003511139890179038
+        }
+      ]
+    },
+    {
+      "idx": 39,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/755182948.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/039_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.912,
+      "audio_peak": 0.17130501568317413,
+      "audio_rms": 0.024829568341374397,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6625769734382629,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6625769734382629
+        },
+        {
+          "label": "neu",
+          "score": 0.3290403187274933
+        },
+        {
+          "label": "ang",
+          "score": 0.006166303064674139
+        },
+        {
+          "label": "sad",
+          "score": 0.0022163933608680964
+        }
+      ]
+    },
+    {
+      "idx": 40,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/4238521233.jpg",
+      "gt_label": "sad",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/040_sad.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.2,
+      "audio_peak": 0.14072677493095398,
+      "audio_rms": 0.020359070971608162,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5661181807518005,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5661181807518005
+        },
+        {
+          "label": "hap",
+          "score": 0.4160989224910736
+        },
+        {
+          "label": "ang",
+          "score": 0.01398441195487976
+        },
+        {
+          "label": "sad",
+          "score": 0.003798432881012559
+        }
+      ]
+    },
+    {
+      "idx": 41,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/16657858.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/041_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.184,
+      "audio_peak": 0.21803395450115204,
+      "audio_rms": 0.023967579007148743,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8139902949333191,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8139902949333191
+        },
+        {
+          "label": "neu",
+          "score": 0.15964682400226593
+        },
+        {
+          "label": "ang",
+          "score": 0.021285541355609894
+        },
+        {
+          "label": "sad",
+          "score": 0.005077326204627752
+        }
+      ]
+    },
+    {
+      "idx": 42,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/26670053.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/042_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.36,
+      "audio_peak": 0.15020321309566498,
+      "audio_rms": 0.021524393931031227,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5562201738357544,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5562201738357544
+        },
+        {
+          "label": "hap",
+          "score": 0.441032737493515
+        },
+        {
+          "label": "ang",
+          "score": 0.0017770405393093824
+        },
+        {
+          "label": "sad",
+          "score": 0.0009700442897155881
+        }
+      ]
+    },
+    {
+      "idx": 43,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/15520806.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/043_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.056,
+      "audio_peak": 0.17066876590251923,
+      "audio_rms": 0.02332630380988121,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6603553891181946,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6603553891181946
+        },
+        {
+          "label": "neu",
+          "score": 0.335849791765213
+        },
+        {
+          "label": "ang",
+          "score": 0.00290154991671443
+        },
+        {
+          "label": "sad",
+          "score": 0.0008932668715715408
+        }
+      ]
+    },
+    {
+      "idx": 44,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/180764308.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/044_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.456,
+      "audio_peak": 0.1749391108751297,
+      "audio_rms": 0.01982445828616619,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8133529424667358,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8133529424667358
+        },
+        {
+          "label": "neu",
+          "score": 0.13807834684848785
+        },
+        {
+          "label": "ang",
+          "score": 0.024389421567320824
+        },
+        {
+          "label": "sad",
+          "score": 0.024179255589842796
+        }
+      ]
+    },
+    {
+      "idx": 45,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/8166943880.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/045_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.944,
+      "audio_peak": 0.14999547600746155,
+      "audio_rms": 0.018098682165145874,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8128116726875305,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8128116726875305
+        },
+        {
+          "label": "neu",
+          "score": 0.18055233359336853
+        },
+        {
+          "label": "sad",
+          "score": 0.004454201087355614
+        },
+        {
+          "label": "ang",
+          "score": 0.0021818261593580246
+        }
+      ]
+    },
+    {
+      "idx": 46,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/101718490.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/046_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.96,
+      "audio_peak": 0.1374818980693817,
+      "audio_rms": 0.018864113837480545,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.568312406539917,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.568312406539917
+        },
+        {
+          "label": "hap",
+          "score": 0.4230499267578125
+        },
+        {
+          "label": "ang",
+          "score": 0.007558137644082308
+        },
+        {
+          "label": "sad",
+          "score": 0.0010795040288940072
+        }
+      ]
+    },
+    {
+      "idx": 47,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/2635543976.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/047_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.752,
+      "audio_peak": 0.16957619786262512,
+      "audio_rms": 0.022618219256401062,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6295589804649353,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6295589804649353
+        },
+        {
+          "label": "hap",
+          "score": 0.2598482668399811
+        },
+        {
+          "label": "ang",
+          "score": 0.10877766460180283
+        },
+        {
+          "label": "sad",
+          "score": 0.0018152421107515693
+        }
+      ]
+    },
+    {
+      "idx": 48,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/181051311.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/048_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.296,
+      "audio_peak": 0.21388764679431915,
+      "audio_rms": 0.023727532476186752,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5309646129608154,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5309646129608154
+        },
+        {
+          "label": "hap",
+          "score": 0.4641309678554535
+        },
+        {
+          "label": "ang",
+          "score": 0.003244373481720686
+        },
+        {
+          "label": "sad",
+          "score": 0.001660038367845118
+        }
+      ]
+    },
+    {
+      "idx": 49,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/21794933.jpg",
+      "gt_label": "surprise",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/049_surprise.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.024,
+      "audio_peak": 0.16684724390506744,
+      "audio_rms": 0.02359692193567753,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.498792827129364,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.498792827129364
+        },
+        {
+          "label": "hap",
+          "score": 0.47106894850730896
+        },
+        {
+          "label": "ang",
+          "score": 0.02822086028754711
+        },
+        {
+          "label": "sad",
+          "score": 0.0019174101762473583
+        }
+      ]
+    },
+    {
+      "idx": 50,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/18379013.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/050_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.88,
+      "audio_peak": 0.2186538577079773,
+      "audio_rms": 0.023057352751493454,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7978016138076782,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7978016138076782
+        },
+        {
+          "label": "neu",
+          "score": 0.1812320202589035
+        },
+        {
+          "label": "ang",
+          "score": 0.019721830263733864
+        },
+        {
+          "label": "sad",
+          "score": 0.0012445640750229359
+        }
+      ]
+    },
+    {
+      "idx": 51,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/1377863856.jpg",
+      "gt_label": "neutral",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/051_neutral.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.96,
+      "audio_peak": 0.15566305816173553,
+      "audio_rms": 0.022367605939507484,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7871399521827698,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7871399521827698
+        },
+        {
+          "label": "neu",
+          "score": 0.20303581655025482
+        },
+        {
+          "label": "ang",
+          "score": 0.007900676690042019
+        },
+        {
+          "label": "sad",
+          "score": 0.001923539093695581
+        }
+      ]
+    },
+    {
+      "idx": 52,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/342068860.jpg",
+      "gt_label": "surprise",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/052_surprise.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.96,
+      "audio_peak": 0.21138004958629608,
+      "audio_rms": 0.02491852454841137,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5445443987846375,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5445443987846375
+        },
+        {
+          "label": "neu",
+          "score": 0.44544267654418945
+        },
+        {
+          "label": "ang",
+          "score": 0.005108025390654802
+        },
+        {
+          "label": "sad",
+          "score": 0.004904892761260271
+        }
+      ]
+    },
+    {
+      "idx": 53,
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/344072429.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/053_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.136,
+      "audio_peak": 0.17421822249889374,
+      "audio_rms": 0.02009405568242073,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6460050940513611,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6460050940513611
+        },
+        {
+          "label": "hap",
+          "score": 0.3505535125732422
+        },
+        {
+          "label": "ang",
+          "score": 0.00302058644592762
+        },
+        {
+          "label": "sad",
+          "score": 0.00042089360067620873
+        }
+      ]
+    },
+    {
+      "idx": 54,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/723959588.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/054_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.104,
+      "audio_peak": 0.1666918247938156,
+      "audio_rms": 0.02221384271979332,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.5382272005081177,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.5382272005081177
+        },
+        {
+          "label": "hap",
+          "score": 0.4526427686214447
+        },
+        {
+          "label": "sad",
+          "score": 0.004684625659137964
+        },
+        {
+          "label": "ang",
+          "score": 0.004445435479283333
+        }
+      ]
+    },
+    {
+      "idx": 55,
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/720547529.jpg",
+      "gt_label": "happy",
+      "wav_path": "outputs/ser_e2e_wavs_fallback/055_happy.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.36,
+      "audio_peak": 0.14760075509548187,
+      "audio_rms": 0.021952258422970772,
+      "embedding_source": "fallback",
+      "pipeline_emotion": "neutral",
+      "pipeline_narrative": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "parse_confidence": "fallback",
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6630638837814331,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6630638837814331
+        },
+        {
+          "label": "hap",
+          "score": 0.31004059314727783
+        },
+        {
+          "label": "ang",
+          "score": 0.025901027023792267
+        },
+        {
+          "label": "sad",
+          "score": 0.0009944975608959794
+        }
+      ]
+    }
+  ]
+}

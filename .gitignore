@@ -34,6 +34,15 @@ outputs/**/vits_train.log
 # Stage F end-to-end smoke evidence (stub Phase 1 + real Phase 2 v3 + real
 # Phase 3 Run 2 G_18000); committed for reviewers.
 !outputs/e2e_smoke.wav
+# Stage G prep demo set (10 wavs covering 5 emotions x 2 from test split);
+# committed for reviewer listening. Per-image SER-eval wavs (ser_e2e_wavs*,
+# ser_phase3_isolated_wavs) stay ignored (>150 wavs, regenerable from
+# eval scripts).
+!outputs/demo/*.wav
+# SER eval per-sample metadata (Tasks 1, 2a, 2b); small jsonl files,
+# committed alongside the eval JSON summaries. Phase 1 / phase3 raw
+# data jsonls under data/ stay ignored via data/*.jsonl above.
+!outputs/*.jsonl
 
 # Phase 3 (new) pre-cleaned filelists — generated artifact, regenerable
 # from raw filelists via scripts/phase3_new_pre_clean_text.py
