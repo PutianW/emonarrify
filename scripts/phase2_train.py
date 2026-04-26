@@ -38,7 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from emonarrify.config import (
     EMOTION_LABELS,
@@ -97,6 +97,12 @@ def parse_args():
         type=int,
         default=0,
         help="Early stop if moving-avg macro fails to improve for N epochs. 0 = off.",
+    )
+    p.add_argument(
+        "--oversample",
+        action="store_true",
+        help="WeightedRandomSampler with weight=1/class_count so each class is "
+             "drawn ~uniformly per epoch. Stacks with --loss-reweight.",
     )
     return p.parse_args()
 
@@ -305,13 +311,34 @@ def main():
     val_ds = Phase2CachedDataset("val")
     print(f"[data] train={len(train_ds)}  val={len(val_ds)}")
 
-    train_loader = DataLoader(
-        train_ds, batch_size=args.batch_size, shuffle=True,
-        num_workers=0, drop_last=False,
-    )
     val_loader = DataLoader(
         val_ds, batch_size=args.batch_size, shuffle=False, num_workers=0,
     )
+    if args.oversample:
+        counts = torch.zeros(NUM_CLASSES, dtype=torch.float64)
+        for idx in train_ds.label_idx.tolist():
+            counts[int(idx)] += 1.0
+        per_class_w = (1.0 / counts).tolist()
+        sample_weights = [per_class_w[int(i)] for i in train_ds.label_idx.tolist()]
+        sampler = WeightedRandomSampler(
+            weights=sample_weights, num_samples=len(train_ds), replacement=True,
+        )
+        train_loader = DataLoader(
+            train_ds, batch_size=args.batch_size, sampler=sampler,
+            num_workers=0, drop_last=False,
+        )
+        # Separate loader on natural distribution so train metrics aren't biased
+        # by the balanced sampling.
+        train_eval_loader = DataLoader(
+            train_ds, batch_size=args.batch_size, shuffle=False, num_workers=0,
+        )
+        print(f"[oversample] enabled  weights=1/class_count  expected per-class freq = uniform")
+    else:
+        train_loader = DataLoader(
+            train_ds, batch_size=args.batch_size, shuffle=True,
+            num_workers=0, drop_last=False,
+        )
+        train_eval_loader = train_loader
 
     lookup_matrix = load_lookup_matrix(device)  # sys.exit(2) if missing
     print(f"[lookup] shape={tuple(lookup_matrix.shape)}  order={EMOTION_LABELS}")
@@ -337,7 +364,7 @@ def main():
         train_stats = train_one_epoch(
             model, train_loader, optimizer, lookup_matrix, class_weights, args, device,
         )
-        train_eval = evaluate(model, train_loader, lookup_matrix, device)
+        train_eval = evaluate(model, train_eval_loader, lookup_matrix, device)
         val_eval = evaluate(model, val_loader, lookup_matrix, device)
 
         macro_window.append(val_eval["macro_acc"])

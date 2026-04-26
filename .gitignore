@@ -15,6 +15,10 @@ weights/*/
 # Phase 3 -> Phase 2 contract artifact: canonical exported lookup table.
 # Small (~35KB), checked in so Phase 2 retrain has a stable known target.
 !weights/emotion_lookup_table.json
+# Phase 2 -> pipeline contract artifact: trained MLP projection head.
+# Small (~1.6MB), checked in as the deliverable downstream consumers
+# (pipeline.py inference path) load directly.
+!weights/phase2_mlp.pt
 
 # Outputs
 outputs/*.wav
