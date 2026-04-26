@@ -1,6 +1,6 @@
 {
   "train": {
-    "model_dir": "/opt/dlami/nvme/emonarrify_runs/phase3_new_v1",
+    "model_dir": "weights/phase3_new_v1",
     "log_interval": 10,
     "eval_interval": 1000,
     "save_interval": 2000,
