@@ -27,6 +27,10 @@ outputs/**/filelists/*.txt
 outputs/**/vits_train.log
 # Stage D / Run 1 listening evaluation samples (committed for reviewers)
 !outputs/phase3_new_v1_listening/*.wav
+# Stage D Run 2 reproduction listening samples — Path A only (eid-based,
+# uses Run 2's own emb_e). Path B (*_override.wav, commit-11-lookup overrides)
+# stays ignored as a diagnostic artifact, not a deployed pipeline output.
+!outputs/phase3_new_v2_listening/*_eid.wav
 
 # Phase 3 (new) pre-cleaned filelists — generated artifact, regenerable
 # from raw filelists via scripts/phase3_new_pre_clean_text.py

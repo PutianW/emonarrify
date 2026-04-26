@@ -1,0 +1,128 @@
+{
+  "model_dir": "/home/ubuntu/emonarrify/weights/phase3_new_v1",
+  "n_ckpts": 9,
+  "joint_score_weight_cos": 10.0,
+  "gate_threshold_cos_mean_off_diag": 0.85,
+  "best_step": 18000,
+  "best_ckpt_path": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_18000.pth",
+  "best_joint_score": -7.41487181186676,
+  "best_cos_sim_mean_off_diag": -0.10851281881332397,
+  "best_cos_sim_max_off_diag": 0.0585782416164875,
+  "best_val_mel": 18.5,
+  "gate_pass": true,
+  "per_ckpt": [
+    {
+      "step": 2000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_2000.pth",
+      "val_mel": 19.58,
+      "cos_mean_off_diag": -0.006109077483415604,
+      "cos_max_off_diag": 0.06767498701810837,
+      "cos_min_off_diag": -0.09595055878162384,
+      "joint_score": -9.518909225165842,
+      "frobenius": 2.857659339904785
+    },
+    {
+      "step": 4000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_4000.pth",
+      "val_mel": 18.93,
+      "cos_mean_off_diag": -0.03308426961302757,
+      "cos_max_off_diag": 0.06749919056892395,
+      "cos_min_off_diag": -0.16704998910427094,
+      "joint_score": -8.599157303869724,
+      "frobenius": 3.0053298473358154
+    },
+    {
+      "step": 6000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_6000.pth",
+      "val_mel": 18.99,
+      "cos_mean_off_diag": -0.0541839599609375,
+      "cos_max_off_diag": 0.05933956429362297,
+      "cos_min_off_diag": -0.21978303790092468,
+      "joint_score": -8.448160400390623,
+      "frobenius": 3.094282865524292
+    },
+    {
+      "step": 8000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_8000.pth",
+      "val_mel": 18.81,
+      "cos_mean_off_diag": -0.06655609607696533,
+      "cos_max_off_diag": 0.06467434018850327,
+      "cos_min_off_diag": -0.22849777340888977,
+      "joint_score": -8.144439039230345,
+      "frobenius": 3.1480040550231934
+    },
+    {
+      "step": 10000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_10000.pth",
+      "val_mel": 18.88,
+      "cos_mean_off_diag": -0.07708853483200073,
+      "cos_max_off_diag": 0.07005977630615234,
+      "cos_min_off_diag": -0.23782849311828613,
+      "joint_score": -8.109114651679992,
+      "frobenius": 3.19209623336792
+    },
+    {
+      "step": 12000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_12000.pth",
+      "val_mel": 18.85,
+      "cos_mean_off_diag": -0.08818279206752777,
+      "cos_max_off_diag": 0.07434770464897156,
+      "cos_min_off_diag": -0.2661765217781067,
+      "joint_score": -7.968172079324724,
+      "frobenius": 3.252554178237915
+    },
+    {
+      "step": 14000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_14000.pth",
+      "val_mel": 18.7,
+      "cos_mean_off_diag": -0.09793736785650253,
+      "cos_max_off_diag": 0.07143865525722504,
+      "cos_min_off_diag": -0.24968980252742767,
+      "joint_score": -7.720626321434974,
+      "frobenius": 3.2807457447052
+    },
+    {
+      "step": 16000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_16000.pth",
+      "val_mel": 18.61,
+      "cos_mean_off_diag": -0.1025734543800354,
+      "cos_max_off_diag": 0.07992246747016907,
+      "cos_min_off_diag": -0.27591365575790405,
+      "joint_score": -7.584265456199645,
+      "frobenius": 3.296433925628662
+    },
+    {
+      "step": 18000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v1/G_18000.pth",
+      "val_mel": 18.5,
+      "cos_mean_off_diag": -0.10851281881332397,
+      "cos_max_off_diag": 0.0585782416164875,
+      "cos_min_off_diag": -0.2649114727973938,
+      "joint_score": -7.41487181186676,
+      "frobenius": 3.3351190090179443
+    }
+  ],
+  "drift_vs_commit11": {
+    "per_emotion_cos": {
+      "neutral": 0.9615310430526733,
+      "happy": 0.9807334542274475,
+      "angry": 0.9824995994567871,
+      "sad": 0.9799571633338928,
+      "surprise": 0.9766091704368591
+    },
+    "per_emotion_l2": {
+      "neutral": 0.4183085560798645,
+      "happy": 0.2688227891921997,
+      "angry": 0.27192422747612,
+      "sad": 0.3293749988079071,
+      "surprise": 0.32564541697502136
+    },
+    "mean_per_emotion_cos": 0.976266086101532,
+    "min_per_emotion_cos": 0.9615310430526733
+  },
+  "commit11_5x5_stats": {
+    "mean": -0.10057355463504791,
+    "max": 0.051348134875297546,
+    "min": -0.24178636074066162
+  }
+}
