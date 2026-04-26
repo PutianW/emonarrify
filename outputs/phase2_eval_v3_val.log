@@ -1,0 +1,41 @@
+[config] split=val  weights=weights/phase2_mlp.pt  device=cuda
+[checkpoint] best_epoch=18  best_moving_avg_macro=0.275  trained_with={'epochs': 30, 'lr': 0.001, 'batch_size': 64, 'weight_decay': 0.0001, 'device': None, 'seed': 42, 'loss_mode': 'combined', 'lambda_cls': 0.5, 'cls_temperature': 0.07, 'loss_reweight': 'sqrt_inverse', 'patience': 0, 'oversample': True}
+[data] val  N=415
+
+========================================================================
+Overall mean cosine sim : 0.4390
+Overall NN accuracy     : 0.5398
+Macro NN accuracy       : 0.2747  (mean of per-class accuracies; excludes empty classes)
+
+Per-class breakdown:
+  label          N    cos_sim        acc
+  --------------------------------------
+  neutral      252     0.5389     0.7341
+  happy        140     0.3340     0.2643
+  angry          4     0.0357     0.2500
+  sad           11    -0.0442     0.0000
+  surprise       8    -0.0009     0.1250
+
+Confusion matrix (rows=true, cols=predicted):
+               neutral     happy     angry       sad  surprise
+  neutral          185        54         1         8         4
+  happy             98        37         1         3         1
+  angry              2         1         1         0         0
+  sad                7         4         0         0         0
+  surprise           4         3         0         0         1
+
+Misclassified samples by (true, predicted) cell:
+  neutral -> happy  (n=54): ['2836134207.jpg', '4232547737.jpg', '2626983575.jpg', '348806087.jpg', '5356119156.jpg', '4243097059.jpg', '182628041.jpg', '2389870549.jpg', '4869561582.jpg', '719148900.jpg'] (+44 more)
+  neutral -> angry  (n=1): ['61738520.jpg']
+  neutral -> sad  (n=8): ['4800315878.jpg', '6684426495.jpg', '199364496.jpg', '2335451757.jpg', '23932935.jpg', '2343830.jpg', '37106887.jpg', '24172595.jpg']
+  neutral -> surprise  (n=4): ['22735021.jpg', '4287108649.jpg', '275966437.jpg', '4318024785.jpg']
+  happy -> neutral  (n=98): ['20532605.jpg', '2616775621.jpg', '1152243800.jpg', '182307006.jpg', '447195447.jpg', '4241521734.jpg', '4278128778.jpg', '723795720.jpg', '3411639492.jpg', '4240794971.jpg'] (+88 more)
+  happy -> angry  (n=1): ['2638270371.jpg']
+  happy -> sad  (n=3): ['5846711184.jpg', '5581124472.jpg', '81820219.jpg']
+  happy -> surprise  (n=1): ['4339942965.jpg']
+  angry -> neutral  (n=2): ['4315387220.jpg', '223446398.jpg']
+  angry -> happy  (n=1): ['478375341.jpg']
+  sad -> neutral  (n=7): ['469057499.jpg', '722039136.jpg', '2585534415.jpg', '344292438.jpg', '982477491.jpg', '111477492.jpg', '182840948.jpg']
+  sad -> happy  (n=4): ['7835792196.jpg', '2627795780.jpg', '4819679953.jpg', '5037340040.jpg']
+  surprise -> neutral  (n=4): ['4303183423.jpg', '66769946.jpg', '1152219646.jpg', '128540087.jpg']
+  surprise -> happy  (n=3): ['721968962.jpg', '35964133.jpg', '28085751.jpg']

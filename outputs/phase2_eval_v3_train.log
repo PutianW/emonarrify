@@ -1,0 +1,29 @@
+[config] split=train  weights=weights/phase2_mlp.pt  device=cuda
+[checkpoint] best_epoch=18  best_moving_avg_macro=0.275  trained_with={'epochs': 30, 'lr': 0.001, 'batch_size': 64, 'weight_decay': 0.0001, 'device': None, 'seed': 42, 'loss_mode': 'combined', 'lambda_cls': 0.5, 'cls_temperature': 0.07, 'loss_reweight': 'sqrt_inverse', 'patience': 0, 'oversample': True}
+[data] train  N=1935
+
+========================================================================
+Overall mean cosine sim : 0.6658
+Overall NN accuracy     : 0.9628
+Macro NN accuracy       : 0.9814  (mean of per-class accuracies; excludes empty classes)
+
+Per-class breakdown:
+  label          N    cos_sim        acc
+  --------------------------------------
+  neutral     1172     0.6714     0.9787
+  happy        656     0.6243     0.9284
+  angry         16     0.9423     1.0000
+  sad           52     0.8423     1.0000
+  surprise      39     0.8489     1.0000
+
+Confusion matrix (rows=true, cols=predicted):
+               neutral     happy     angry       sad  surprise
+  neutral         1147        25         0         0         0
+  happy             47       609         0         0         0
+  angry              0         0        16         0         0
+  sad                0         0         0        52         0
+  surprise           0         0         0         0        39
+
+Misclassified samples by (true, predicted) cell:
+  neutral -> happy  (n=25): ['1529680619.jpg', '182275224.jpg', '4318698267.jpg', '903898065.jpg', '211557318.jpg', '4286906715.jpg', '182274196.jpg', '182276345.jpg', '4241219255.jpg', '934841057.jpg'] (+15 more)
+  happy -> neutral  (n=47): ['26670057.jpg', '4455440750.jpg', '23681674.jpg', '6762437929.jpg', '23681432.jpg', '26322612.jpg', '182032576.jpg', '4541036690.jpg', '182030838.jpg', '997623170.jpg'] (+37 more)

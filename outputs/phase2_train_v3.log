@@ -1,0 +1,37 @@
+[config] {'epochs': 30, 'lr': 0.001, 'batch_size': 64, 'weight_decay': 0.0001, 'device': None, 'seed': 42, 'loss_mode': 'combined', 'lambda_cls': 0.5, 'cls_temperature': 0.07, 'loss_reweight': 'sqrt_inverse', 'patience': 0, 'oversample': True}
+[config] device=cuda  ckpt=/home/ubuntu/emonarrify/weights/phase2_mlp.pt
+[data] train=1935  val=415
+[oversample] enabled  weights=1/class_count  expected per-class freq = uniform
+[lookup] shape=(5, 256)  order=['neutral', 'happy', 'angry', 'sad', 'surprise']
+[reweight] mode=sqrt_inverse  weights={'neutral': 0.237, 'happy': 0.316, 'angry': 2.026, 'sad': 1.124, 'surprise': 1.298}
+[epoch   1] train: loss=0.3902 mse=0.0241 cos=0.132 acc=0.290  val: mse=0.0247 cos=0.100 acc=0.188 macro(raw)=0.224 macro(ma3)=0.224  per-class=[neutral=0.02 happy=0.49 angry=0.25 sad=0.36 surprise=0.00]
+[epoch   2] train: loss=0.0820 mse=0.0113 cos=0.350 acc=0.623  val: mse=0.0121 cos=0.288 acc=0.424 macro(raw)=0.238 macro(ma3)=0.231  per-class=[neutral=0.38 happy=0.56 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   3] train: loss=0.0542 mse=0.0096 cos=0.400 acc=0.608  val: mse=0.0107 cos=0.320 acc=0.376 macro(raw)=0.231 macro(ma3)=0.231  per-class=[neutral=0.25 happy=0.66 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   4] train: loss=0.0473 mse=0.0085 cos=0.450 acc=0.778  val: mse=0.0097 cos=0.359 acc=0.494 macro(raw)=0.237 macro(ma3)=0.236  per-class=[neutral=0.65 happy=0.28 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   5] train: loss=0.0391 mse=0.0080 cos=0.455 acc=0.757  val: mse=0.0093 cos=0.349 acc=0.434 macro(raw)=0.236 macro(ma3)=0.235  per-class=[neutral=0.44 happy=0.49 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   6] train: loss=0.0309 mse=0.0073 cos=0.501 acc=0.855  val: mse=0.0087 cos=0.386 acc=0.506 macro(raw)=0.246 macro(ma3)=0.240  per-class=[neutral=0.64 happy=0.34 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   7] train: loss=0.0275 mse=0.0070 cos=0.522 acc=0.849  val: mse=0.0085 cos=0.394 acc=0.506 macro(raw)=0.248 macro(ma3)=0.243  per-class=[neutral=0.63 happy=0.36 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   8] train: loss=0.0255 mse=0.0070 cos=0.540 acc=0.878  val: mse=0.0086 cos=0.410 acc=0.537 macro(raw)=0.257 macro(ma3)=0.250  per-class=[neutral=0.69 happy=0.34 angry=0.25 sad=0.00 surprise=0.00]
+[epoch   9] train: loss=0.0227 mse=0.0067 cos=0.540 acc=0.886  val: mse=0.0084 cos=0.392 acc=0.477 macro(raw)=0.247 macro(ma3)=0.251  per-class=[neutral=0.53 happy=0.46 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  10] train: loss=0.0199 mse=0.0063 cos=0.576 acc=0.925  val: mse=0.0081 cos=0.427 acc=0.540 macro(raw)=0.262 macro(ma3)=0.255  per-class=[neutral=0.67 happy=0.39 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  11] train: loss=0.0180 mse=0.0060 cos=0.590 acc=0.930  val: mse=0.0080 cos=0.417 acc=0.496 macro(raw)=0.192 macro(ma3)=0.234  per-class=[neutral=0.64 happy=0.32 angry=0.00 sad=0.00 surprise=0.00]
+[epoch  12] train: loss=0.0115 mse=0.0058 cos=0.602 acc=0.942  val: mse=0.0079 cos=0.418 acc=0.523 macro(raw)=0.253 macro(ma3)=0.236  per-class=[neutral=0.66 happy=0.36 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  13] train: loss=0.0109 mse=0.0056 cos=0.608 acc=0.945  val: mse=0.0078 cos=0.407 acc=0.513 macro(raw)=0.277 macro(ma3)=0.241  per-class=[neutral=0.62 happy=0.39 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  14] train: loss=0.0119 mse=0.0054 cos=0.620 acc=0.953  val: mse=0.0078 cos=0.407 acc=0.501 macro(raw)=0.267 macro(ma3)=0.266  per-class=[neutral=0.64 happy=0.32 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  15] train: loss=0.0109 mse=0.0052 cos=0.639 acc=0.958  val: mse=0.0077 cos=0.425 acc=0.516 macro(raw)=0.266 macro(ma3)=0.270  per-class=[neutral=0.70 happy=0.26 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  16] train: loss=0.0108 mse=0.0051 cos=0.645 acc=0.949  val: mse=0.0076 cos=0.431 acc=0.559 macro(raw)=0.284 macro(ma3)=0.272  per-class=[neutral=0.75 happy=0.29 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  17] train: loss=0.0096 mse=0.0053 cos=0.628 acc=0.928  val: mse=0.0078 cos=0.405 acc=0.458 macro(raw)=0.267 macro(ma3)=0.272  per-class=[neutral=0.48 happy=0.49 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  18] train: loss=0.0104 mse=0.0049 cos=0.666 acc=0.963  val: mse=0.0076 cos=0.439 acc=0.540 macro(raw)=0.275 macro(ma3)=0.275  per-class=[neutral=0.73 happy=0.26 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  19] train: loss=0.0100 mse=0.0052 cos=0.655 acc=0.938  val: mse=0.0079 cos=0.429 acc=0.513 macro(raw)=0.281 macro(ma3)=0.274  per-class=[neutral=0.60 happy=0.43 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  20] train: loss=0.0124 mse=0.0057 cos=0.651 acc=0.948  val: mse=0.0083 cos=0.427 acc=0.480 macro(raw)=0.247 macro(ma3)=0.267  per-class=[neutral=0.54 happy=0.44 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  21] train: loss=0.0077 mse=0.0050 cos=0.670 acc=0.957  val: mse=0.0078 cos=0.429 acc=0.499 macro(raw)=0.275 macro(ma3)=0.267  per-class=[neutral=0.58 happy=0.41 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  22] train: loss=0.0097 mse=0.0048 cos=0.698 acc=0.970  val: mse=0.0078 cos=0.452 acc=0.520 macro(raw)=0.242 macro(ma3)=0.254  per-class=[neutral=0.72 happy=0.24 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  23] train: loss=0.0082 mse=0.0049 cos=0.683 acc=0.971  val: mse=0.0078 cos=0.427 acc=0.504 macro(raw)=0.268 macro(ma3)=0.262  per-class=[neutral=0.64 happy=0.32 angry=0.25 sad=0.00 surprise=0.12]
+[epoch  24] train: loss=0.0084 mse=0.0049 cos=0.692 acc=0.955  val: mse=0.0077 cos=0.453 acc=0.496 macro(raw)=0.248 macro(ma3)=0.253  per-class=[neutral=0.59 happy=0.40 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  25] train: loss=0.0073 mse=0.0048 cos=0.686 acc=0.962  val: mse=0.0077 cos=0.432 acc=0.494 macro(raw)=0.251 macro(ma3)=0.256  per-class=[neutral=0.57 happy=0.44 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  26] train: loss=0.0055 mse=0.0048 cos=0.715 acc=0.973  val: mse=0.0078 cos=0.465 acc=0.516 macro(raw)=0.255 macro(ma3)=0.251  per-class=[neutral=0.62 happy=0.40 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  27] train: loss=0.0263 mse=0.0090 cos=0.704 acc=0.968  val: mse=0.0120 cos=0.464 acc=0.545 macro(raw)=0.250 macro(ma3)=0.252  per-class=[neutral=0.76 happy=0.24 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  28] train: loss=0.0112 mse=0.0053 cos=0.705 acc=0.959  val: mse=0.0084 cos=0.427 acc=0.518 macro(raw)=0.247 macro(ma3)=0.250  per-class=[neutral=0.68 happy=0.31 angry=0.25 sad=0.00 surprise=0.00]
+[epoch  29] train: loss=0.0086 mse=0.0046 cos=0.726 acc=0.964  val: mse=0.0079 cos=0.452 acc=0.513 macro(raw)=0.219 macro(ma3)=0.239  per-class=[neutral=0.68 happy=0.29 angry=0.00 sad=0.00 surprise=0.12]
+[epoch  30] train: loss=0.0091 mse=0.0049 cos=0.715 acc=0.970  val: mse=0.0081 cos=0.450 acc=0.537 macro(raw)=0.276 macro(ma3)=0.247  per-class=[neutral=0.72 happy=0.29 angry=0.25 sad=0.00 surprise=0.12]
+[done] saved best checkpoint: epoch 18, moving-avg macro=0.275 -> /home/ubuntu/emonarrify/weights/phase2_mlp.pt

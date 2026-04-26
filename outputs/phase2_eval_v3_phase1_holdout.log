@@ -1,0 +1,35 @@
+[config] split=phase1_holdout  weights=weights/phase2_mlp.pt  device=cuda
+[checkpoint] best_epoch=18  best_moving_avg_macro=0.275  trained_with={'epochs': 30, 'lr': 0.001, 'batch_size': 64, 'weight_decay': 0.0001, 'device': None, 'seed': 42, 'loss_mode': 'combined', 'lambda_cls': 0.5, 'cls_temperature': 0.07, 'loss_reweight': 'sqrt_inverse', 'patience': 0, 'oversample': True}
+[data] phase1_holdout  N=56
+
+========================================================================
+Overall mean cosine sim : 0.4560
+Overall NN accuracy     : 0.4821
+Macro NN accuracy       : 0.2206  (mean of per-class accuracies; excludes empty classes)
+
+Per-class breakdown:
+  label          N    cos_sim        acc
+  --------------------------------------
+  neutral       34     0.5789     0.7059
+  happy         17     0.3390     0.1765
+  angry          0      NaN        NaN  
+  sad            2    -0.0028     0.0000
+  surprise       3     0.0323     0.0000
+
+Confusion matrix (rows=true, cols=predicted):
+               neutral     happy     angry       sad  surprise
+  neutral           24         7         0         1         2
+  happy             14         3         0         0         0
+  angry              0         0         0         0         0
+  sad                1         1         0         0         0
+  surprise           2         1         0         0         0
+
+Misclassified samples by (true, predicted) cell:
+  neutral -> happy  (n=7): ['6840865731.jpg', '21802170.jpg', '2639298852.jpg', '316858152.jpg', '16657858.jpg', '26670053.jpg', '15520806.jpg']
+  neutral -> sad  (n=1): ['754293885.jpg']
+  neutral -> surprise  (n=2): ['24169885.jpg', '205858578.jpg']
+  happy -> neutral  (n=14): ['199337365.jpg', '722389045.jpg', '2587259493.jpg', '2165659018.jpg', '2509436906.jpg', '754293869.jpg', '718003894.jpg', '4375281540.jpg', '1530549526.jpg', '180764308.jpg'] (+4 more)
+  sad -> neutral  (n=1): ['4958363182.jpg']
+  sad -> happy  (n=1): ['4238521233.jpg']
+  surprise -> neutral  (n=2): ['183262531.jpg', '21794933.jpg']
+  surprise -> happy  (n=1): ['342068860.jpg']
