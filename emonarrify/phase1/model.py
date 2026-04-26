@@ -9,14 +9,16 @@ Interface contract:
 """
 
 import torch
-from unsloth import FastVisionModel
 import json
 import re
 from PIL import Image
 import os
-from datasets import load_dataset
-from transformers import TextStreamer
-from transformers import pipeline
+
+# Heavy deps (unsloth, transformers, datasets) are deferred to their use
+# sites so this module can be imported in stub mode without those packages
+# installed (e.g. e2e pipeline smoke without the LoRA adapter).
+# `datasets.load_dataset` was imported at top level but never used here
+# in this file -- removed during lazy-import hygiene pass.
 
 # from ..config import EMOTION_LABELS, DEFAULT_EMOTION
 
@@ -50,7 +52,13 @@ class Phase1Model:
             self._load_model()
 
     def _load_model(self):
-        """Load fine-tuned VLM with LoRA adapter."""
+        """Load fine-tuned VLM with LoRA adapter.
+
+        unsloth import is deferred here so module import does not require
+        the unsloth dep when only stub mode is used (e.g. e2e pipeline
+        smoke without the LoRA adapter).
+        """
+        from unsloth import FastVisionModel
         model, tokenizer = FastVisionModel.from_pretrained(
             model_name = self.adapter_path, # YOUR MODEL YOU USED FOR TRAINING
             load_in_4bit = True, # Set to False for 16bit LoRA
@@ -63,6 +71,7 @@ class Phase1Model:
         return model
     
     def _load_emotion_clf():
+        from transformers import pipeline
         # print("Loading emotion classifier...")
         clf = pipeline(
             "text-classification",
@@ -107,8 +116,15 @@ class Phase1Model:
             image: PIL.Image input
 
         Returns:
-            {"narrative_text": str, "emotion_label": str}
+            {"narrative_text": str, "emotion_label": str, "parse_confidence": str}
         """
+        if self._is_stub:
+            return {
+                "narrative_text": "A quiet scene unfolds, captured in this image, telling its silent story.",
+                "emotion_label": "neutral",
+                "parse_confidence": "fallback",
+            }
+
         image = Image.open(image_path)
         messages = [
             {"role": "user", "content": [
@@ -125,6 +141,7 @@ class Phase1Model:
             return_tensors = "pt",
         ).to("cuda")
 
+        from transformers import TextStreamer
         text_streamer = TextStreamer(self._tokenizer, skip_prompt = True)
         output_ids = self._model.generate(**inputs, streamer = text_streamer, max_new_tokens = 128,
                     use_cache = True, temperature = 1.5, min_p = 0.1)

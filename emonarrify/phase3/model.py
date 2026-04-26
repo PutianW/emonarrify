@@ -1,14 +1,13 @@
 """
-Phase 3: Emotion-Conditioned TTS Fine-Tuning
-Owner: Member A
+Phase 3: Emotion-conditioned TTS.
 
-Interface contract:
-    synthesize_speech(text: str, emotion_embedding: torch.Tensor) -> np.ndarray
-    Returns audio waveform, shape (n_samples,)
+Legacy notice: the EmotionLookupTable and ConditionalNeuralTTSBackbone
+classes in this file are pre-VITS era toy implementations from the
+project's MVP phase. They are kept for git history and as reference,
+not for use.
 
-This phase trains first and exports:
-    1. Fine-tuned TTS model weights
-    2. Emotion lookup table (JSON) for Phase 2
+Active code path:
+    Phase3Model.__init__ -> PatchedVITSBackbone (from vits_backbone.py)
 """
 
 import json
@@ -24,6 +23,7 @@ from ..config import (
 )
 
 
+# LEGACY -- superseded by exported emotion_lookup_table.json + PatchedVITSBackbone.
 class EmotionLookupTable(nn.Module):
     """Learnable emotion embedding table: 5 emotions -> D_emo-dim vectors."""
 
@@ -105,6 +105,7 @@ class EmotionLookupTable(nn.Module):
         return sim
 
 
+# LEGACY -- superseded by PatchedVITSBackbone (vits_backbone.py).
 class ConditionalNeuralTTSBackbone(nn.Module):
     """Lightweight GRU-based emotion-conditioned neural TTS backbone (MVP)."""
 
@@ -228,42 +229,33 @@ class ConditionalNeuralTTSBackbone(nn.Module):
 class Phase3Model:
     """Emotion-conditioned TTS wrapper."""
 
-    def __init__(self, tts_weights_path: str = None):
+    def __init__(
+        self,
+        tts_weights_path: str = None,
+        vits_config_path: str = "vits/configs/phase3_new_v1.json",
+        lookup_table_path: str = LOOKUP_TABLE_PATH,
+    ):
         """
         Args:
-            tts_weights_path: path to fine-tuned TTS model weights.
-                              If None, runs in stub mode.
+            tts_weights_path:    path to G_*.pth (Phase 3 trained generator).
+                                 If None, runs in stub mode (returns silence).
+            vits_config_path:    VITS hps JSON (defines model arch + symbols).
+            lookup_table_path:   exported emotion_lookup_table.json (5 x 256).
         """
         self.tts_weights_path = tts_weights_path
         self._is_stub = tts_weights_path is None
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self._tts_model = ConditionalNeuralTTSBackbone(sample_rate=SAMPLE_RATE).to(self._device)
-        self._lookup_table = EmotionLookupTable().to(self._device)
 
-        if not self._is_stub:
-            self._load_model()
-
-    def _load_model(self):
-        """Load fine-tuned TTS model and optional lookup table checkpoint."""
-        if not self.tts_weights_path:
-            raise ValueError("tts_weights_path is empty")
-        if not os.path.exists(self.tts_weights_path):
-            raise FileNotFoundError(f"Phase3 weights not found: {self.tts_weights_path}")
-
-        ckpt = torch.load(self.tts_weights_path, map_location=self._device)
-        if isinstance(ckpt, dict) and "tts_model" in ckpt:
-            self._tts_model.load_state_dict(ckpt["tts_model"], strict=True)
-            if "lookup_table" in ckpt:
-                self._lookup_table.load_state_dict(ckpt["lookup_table"], strict=True)
-        elif isinstance(ckpt, dict):
-            self._tts_model.load_state_dict(ckpt, strict=False)
+        if self._is_stub:
+            self._backbone = None
         else:
-            raise ValueError(
-                "Unsupported checkpoint format. "
-                "Expected dict with key 'tts_model' or raw state_dict dict."
+            from emonarrify.phase3.vits_backbone import PatchedVITSBackbone
+            self._backbone = PatchedVITSBackbone(
+                ckpt_path=tts_weights_path,
+                vits_config_path=vits_config_path,
+                lookup_table_path=lookup_table_path,
+                device="auto",
             )
-
-        self._tts_model.eval()
 
     @staticmethod
     def _validate_emotion_embedding(emotion_embedding: torch.Tensor):
@@ -289,46 +281,32 @@ class Phase3Model:
             emotion_embedding: torch.Tensor of shape (D_emo,), from Phase 2
 
         Returns:
-            np.ndarray audio waveform, shape (n_samples,)
+            np.ndarray audio waveform, shape (n_samples,), sr = SAMPLE_RATE
         """
-        self._validate_emotion_embedding(emotion_embedding)
-
-        text = (text or "").strip()
-        if not text:
-            duration_sec = 1.0
-            n_samples = int(duration_sec * SAMPLE_RATE)
-            return np.zeros(n_samples, dtype=np.float32)
-
-        emb = emotion_embedding.to(self._device, dtype=torch.float32)
-        with torch.no_grad():
-            audio_t = self._tts_model.synthesize(text=text, emotion_embedding=emb)
-        return audio_t.detach().cpu().numpy().astype(np.float32)
+        if self._is_stub or self._backbone is None:
+            return np.zeros(SAMPLE_RATE, dtype=np.float32)
+        return self._backbone.synthesize_with_embedding(text, emotion_embedding)
 
     def synthesize_from_label(self, text: str, emotion_label: str) -> np.ndarray:
         """
         Synthesize speech directly from discrete emotion label.
         Useful for fallback mode and label-conditioned debugging.
         """
-        emb = self._lookup_table.get_embedding_by_label(emotion_label).to(self._device, dtype=torch.float32)
-        return self.synthesize_speech(text=text, emotion_embedding=emb)
+        if self._is_stub or self._backbone is None:
+            return np.zeros(SAMPLE_RATE, dtype=np.float32)
+        return self._backbone.synthesize_with_label(text, emotion_label)
 
-    def export_lookup_table(self, path: str = LOOKUP_TABLE_PATH):
-        """Export current lookup table as JSON (for Phase 2 alignment)."""
-        self._lookup_table.export_json(path)
-
-    def save_checkpoint(self, path: str):
-        """Save Phase 3 model + lookup table weights for inference/resume."""
-        os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
-        torch.save(
-            {
-                "tts_model": self._tts_model.state_dict(),
-                "lookup_table": self._lookup_table.state_dict(),
-                "sample_rate": SAMPLE_RATE,
-                "model_name": "ConditionalNeuralTTSBackbone",
-            },
-            path,
+    def export_lookup_table(self, *args, **kwargs):
+        raise NotImplementedError(
+            "export_lookup_table is removed. Use scripts/phase3_new_export_lookup.py "
+            "to export emotion_lookup_table.json from a trained ckpt."
         )
-        print(f"Phase3 checkpoint saved to {path}")
+
+    def save_checkpoint(self, *args, **kwargs):
+        raise NotImplementedError(
+            "save_checkpoint is removed. Phase 3 ckpt is managed by VITS train loop; "
+            "use vits/utils.py:save_checkpoint during training."
+        )
 
 
 # =========================================================================

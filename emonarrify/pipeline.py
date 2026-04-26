@@ -39,20 +39,25 @@ class EmoNarrifyPipeline:
         phase1_adapter: Optional[str] = None,
         phase2_mlp: Optional[str] = None,
         phase3_tts: Optional[str] = None,
+        vits_config_path: str = "vits/configs/phase3_new_v1.json",
         use_fallback: bool = False,
     ):
         """
         Args:
-            phase1_adapter: path to VLM LoRA adapter (None = stub)
-            phase2_mlp:     path to MLP projection head weights (None = stub)
-            phase3_tts:     path to TTS model weights (None = stub)
-            use_fallback:   if True, bypass Phase 2 and use discrete label -> lookup table
+            phase1_adapter:    path to VLM LoRA adapter (None = stub)
+            phase2_mlp:        path to MLP projection head weights (None = stub)
+            phase3_tts:        path to Phase 3 G_*.pth (None = stub)
+            vits_config_path:  VITS hps JSON for PatchedVITSBackbone arch + symbols
+            use_fallback:      if True, bypass Phase 2 and use discrete label -> lookup table
         """
         self.use_fallback = use_fallback
 
         print("[EmoNarrify] Initializing pipeline...")
         self.phase1 = Phase1Model(adapter_path=phase1_adapter)
-        self.phase3 = Phase3Model(tts_weights_path=phase3_tts)
+        self.phase3 = Phase3Model(
+            tts_weights_path=phase3_tts,
+            vits_config_path=vits_config_path,
+        )
 
         if not use_fallback:
             self.phase2 = Phase2Model(mlp_weights_path=phase2_mlp)

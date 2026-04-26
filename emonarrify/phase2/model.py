@@ -57,18 +57,25 @@ class Phase2Model:
 
     def _load_models(self):
         """Load frozen CLIP ViT + trained MLP head."""
-        # TODO: Member C - load CLIP and MLP here
-        # Example:
-        #   import clip
-        #   self._clip_model, self._clip_preprocess = clip.load(self.clip_model_name, device=self._device)
-        #   self._clip_model.eval()
-        #   for p in self._clip_model.parameters():
-        #       p.requires_grad = False
-        #
-        #   self._mlp = MLPProjectionHead(d_clip=512)  # adjust d_clip based on CLIP variant
-        #   self._mlp.load_state_dict(torch.load(self.mlp_weights_path, map_location=self._device))
-        #   self._mlp.to(self._device).eval()
-        raise NotImplementedError("Member C: implement model loading")
+        import clip  # lazy: openai-clip pkg
+        self._clip_model, self._clip_preprocess = clip.load(
+            self.clip_model_name,
+            device=self._device,
+            jit=False,
+        )
+        self._clip_model.eval()
+        for p in self._clip_model.parameters():
+            p.requires_grad = False
+
+        ckpt = torch.load(
+            self.mlp_weights_path,
+            map_location=self._device,
+            weights_only=False,
+        )
+        d_clip = ckpt.get("d_clip", 512)
+        self._mlp = MLPProjectionHead(d_clip=d_clip).to(self._device)
+        self._mlp.load_state_dict(ckpt["state_dict"])
+        self._mlp.eval()
 
     def encode_image_emotion(self, image: Image.Image) -> torch.Tensor:
         """
@@ -83,13 +90,11 @@ class Phase2Model:
         if self._is_stub:
             return torch.zeros(D_EMO)
 
-        # TODO: Member C - implement inference here
-        # image_tensor = self._clip_preprocess(image).unsqueeze(0).to(self._device)
-        # with torch.no_grad():
-        #     clip_features = self._clip_model.encode_image(image_tensor).float().squeeze(0)
-        #     embedding = self._mlp(clip_features)
-        # return embedding.cpu()
-        raise NotImplementedError("Member C: implement image emotion encoding")
+        preprocessed = self._clip_preprocess(image).unsqueeze(0).to(self._device)
+        with torch.no_grad():
+            clip_feature = self._clip_model.encode_image(preprocessed).float()
+            embedding = self._mlp(clip_feature)
+        return embedding.squeeze(0).cpu()
 
     @staticmethod
     def load_lookup_table(path: str = LOOKUP_TABLE_PATH) -> dict:
