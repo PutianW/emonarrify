@@ -24,12 +24,19 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-WAVS_DIR = ROOT / "outputs/ser_phase3_isolated_wavs"
-PIPELINE_JSONL = ROOT / "outputs/ser_phase3_isolated_pipeline.jsonl"
-EVAL_JSON = ROOT / "outputs/ser_phase3_isolated_eval.json"
+DEFAULT_CKPT = ROOT / "weights/phase3_new_v1/G_18000.pth"
 
 EMOTION_LABELS = ["neutral", "happy", "angry", "sad", "surprise"]
 SER_TO_OUR = {"neu": "neutral", "hap": "happy", "ang": "angry", "sad": "sad"}
+
+
+def _paths(suffix: str):
+    """Return (wavs_dir, pipeline_jsonl, eval_json) tuned by suffix."""
+    return (
+        ROOT / f"outputs/ser_phase3_isolated_wavs{suffix}",
+        ROOT / f"outputs/ser_phase3_isolated_pipeline{suffix}.jsonl",
+        ROOT / f"outputs/ser_phase3_isolated_eval{suffix}.json",
+    )
 
 NARRATIVES = [
     "A quiet scene unfolds, captured in this image.",
@@ -46,24 +53,26 @@ NARRATIVES = [
 ]
 
 
-def cmd_synthesize():
+def cmd_synthesize(ckpt_path: str, lookup_path: str, suffix: str):
     sys.path.insert(0, str(ROOT))
     from emonarrify.phase3.vits_backbone import PatchedVITSBackbone
     import numpy as np
     import soundfile as sf
 
-    print(f"[synthesize] loading PatchedVITSBackbone ...")
+    wavs_dir, pipeline_jsonl, _ = _paths(suffix)
+    print(f"[synthesize] ckpt={ckpt_path} lookup={lookup_path}")
     backbone = PatchedVITSBackbone(
-        ckpt_path=str(ROOT / "weights/phase3_new_v1/G_18000.pth"),
+        ckpt_path=ckpt_path,
+        lookup_table_path=lookup_path,
     )
     sr = backbone.sampling_rate
-    WAVS_DIR.mkdir(parents=True, exist_ok=True)
+    wavs_dir.mkdir(parents=True, exist_ok=True)
 
     records = []
     for emotion in EMOTION_LABELS:
         for i, text in enumerate(NARRATIVES):
             audio = backbone.synthesize_with_label(text, emotion).astype(np.float32)
-            wav_path = WAVS_DIR / f"{emotion}_{i:02d}.wav"
+            wav_path = wavs_dir / f"{emotion}_{i:02d}.wav"
             sf.write(str(wav_path), audio, sr)
             records.append({
                 "emotion_intended": emotion,
@@ -77,21 +86,22 @@ def cmd_synthesize():
             })
         print(f"[synthesize] {emotion}: {len(NARRATIVES)} wavs done")
 
-    with open(PIPELINE_JSONL, "w") as f:
+    with open(pipeline_jsonl, "w") as f:
         for r in records:
             f.write(json.dumps(r) + "\n")
-    print(f"[synthesize] total={len(records)} wavs to {WAVS_DIR}")
-    print(f"[synthesize] pipeline_jsonl={PIPELINE_JSONL}")
+    print(f"[synthesize] total={len(records)} wavs to {wavs_dir}")
+    print(f"[synthesize] pipeline_jsonl={pipeline_jsonl}")
 
 
-def cmd_classify():
+def cmd_classify(suffix: str, ckpt_label: str):
     import numpy as np
     import soundfile as sf
     import torch
     from transformers import pipeline as hf_pipeline
 
-    if not PIPELINE_JSONL.exists():
-        sys.exit(f"[classify] missing {PIPELINE_JSONL}; run --mode synthesize first")
+    _, pipeline_jsonl, eval_json = _paths(suffix)
+    if not pipeline_jsonl.exists():
+        sys.exit(f"[classify] missing {pipeline_jsonl}; run --mode synthesize first")
 
     device = 0 if torch.cuda.is_available() else -1
     print(f"[classify] loading SER (superb/wav2vec2-base-superb-er) device={device}")
@@ -103,7 +113,7 @@ def cmd_classify():
 
     samples = []
     confusion: dict[str, Counter] = {gt: Counter() for gt in EMOTION_LABELS}
-    with open(PIPELINE_JSONL) as f:
+    with open(pipeline_jsonl) as f:
         records = [json.loads(line) for line in f if line.strip()]
 
     print(f"[classify] {len(records)} wavs to classify")
@@ -142,7 +152,7 @@ def cmd_classify():
 
     output = {
         "config": {
-            "experiment": "Phase 3 isolated SER eval (PatchedVITSBackbone.synthesize_with_label)",
+            "experiment": f"Phase 3 isolated SER eval ({ckpt_label})",
             "narratives_per_emotion": len(NARRATIVES),
             "narratives": NARRATIVES,
             "ser_model": "superb/wav2vec2-base-superb-er",
@@ -156,7 +166,7 @@ def cmd_classify():
         "confusion_matrix": {emo: dict(c) for emo, c in confusion.items()},
         "samples": samples,
     }
-    with open(EVAL_JSON, "w") as f:
+    with open(eval_json, "w") as f:
         json.dump(output, f, indent=2)
 
     print()
@@ -175,17 +185,27 @@ def cmd_classify():
         row = [confusion[emo].get(c, 0) for c in cols]
         print(f"{emo:>8s}" + " ".join(f"{n:>9d}" for n in row))
     print()
-    print(f"output: {EVAL_JSON}")
+    print(f"output: {eval_json}")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["synthesize", "classify"], required=True)
+    ap.add_argument("--ckpt", default=str(DEFAULT_CKPT),
+                    help="G_*.pth to drive PatchedVITSBackbone (default: deployed Run 2).")
+    ap.add_argument("--lookup", default=None,
+                    help="emotion_lookup_table.json (default: derived from --ckpt's emb_e).")
+    ap.add_argument("--suffix", default="",
+                    help="Output filename suffix (e.g. '_v2_no_cls'). Default empty (Run 2 deployed).")
+    ap.add_argument("--ckpt-label", default="default",
+                    help="Human label for ckpt, embedded in classify output JSON config.")
     args = ap.parse_args()
+
+    lookup_path = args.lookup or str(ROOT / "weights/emotion_lookup_table.json")
     if args.mode == "synthesize":
-        cmd_synthesize()
+        cmd_synthesize(args.ckpt, lookup_path, args.suffix)
     else:
-        cmd_classify()
+        cmd_classify(args.suffix, args.ckpt_label)
 
 
 if __name__ == "__main__":

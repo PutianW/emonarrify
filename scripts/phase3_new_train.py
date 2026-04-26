@@ -111,6 +111,12 @@ def parse_args() -> argparse.Namespace:
                    help="Pretrained generator checkpoint (selective load)")
     p.add_argument("--no-init", action="store_true",
                    help="Skip pretrained init (random scratch run)")
+    p.add_argument("--lambda-cls", type=float, default=None,
+                   help="Override config train.lambda_cls (Stage G ablation)")
+    p.add_argument("--lambda-ortho", type=float, default=None,
+                   help="Override config train.lambda_ortho (Stage G ablation)")
+    p.add_argument("--model-dir", type=str, default=None,
+                   help="Override config train.model_dir (ablation runs)")
     return p.parse_args()
 
 
@@ -148,6 +154,12 @@ def main() -> None:
     hps = utils.get_hparams_from_file(args.config)
     if args.max_steps is not None:
         hps.train.max_steps_total = args.max_steps
+    if args.lambda_cls is not None:
+        hps.train.lambda_cls = args.lambda_cls
+    if args.lambda_ortho is not None:
+        hps.train.lambda_ortho = args.lambda_ortho
+    if args.model_dir is not None:
+        hps.train.model_dir = args.model_dir
 
     torch.manual_seed(hps.train.seed)
     torch.backends.cudnn.benchmark = True

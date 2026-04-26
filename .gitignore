@@ -39,6 +39,9 @@ outputs/**/vits_train.log
 # ser_phase3_isolated_wavs) stay ignored (>150 wavs, regenerable from
 # eval scripts).
 !outputs/demo/*.wav
+# Stage G Run 2 ablation (lambda_cls=0) listening A/B set, Path A only;
+# committed for reviewer listening alongside Run 1 / phase3_new_v2_listening.
+!outputs/phase3_new_v2_no_cls_listening/*.wav
 # SER eval per-sample metadata (Tasks 1, 2a, 2b); small jsonl files,
 # committed alongside the eval JSON summaries. Phase 1 / phase3 raw
 # data jsonls under data/ stay ignored via data/*.jsonl above.
