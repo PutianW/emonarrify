@@ -1,0 +1,104 @@
+{
+  "model_dir": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho",
+  "experiment": "Stage G Run 3 (lambda_ortho=0)",
+  "n_ckpts": 7,
+  "joint_score_weight_cos": 10.0,
+  "gate_threshold_cos_mean_off_diag": 0.85,
+  "best_step": 10000,
+  "best_ckpt_path": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_10000.pth",
+  "best_joint_score": -7.682251583337784,
+  "best_cos_sim_mean_off_diag": -0.07977484166622162,
+  "best_cos_sim_max_off_diag": 0.06532679498195648,
+  "best_val_mel": 18.48,
+  "gate_pass": true,
+  "per_ckpt": [
+    {
+      "step": 2000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_2000.pth",
+      "val_mel": 19.15,
+      "cos_mean_off_diag": -0.007364523597061634,
+      "cos_max_off_diag": 0.07063934952020645,
+      "cos_min_off_diag": -0.11950141191482544,
+      "joint_score": -9.076354764029382,
+      "frobenius": 2.9138400554656982
+    },
+    {
+      "step": 4000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_4000.pth",
+      "val_mel": 18.61,
+      "cos_mean_off_diag": -0.03200836107134819,
+      "cos_max_off_diag": 0.0756688341498375,
+      "cos_min_off_diag": -0.16143576800823212,
+      "joint_score": -8.289916389286518,
+      "frobenius": 3.05399227142334
+    },
+    {
+      "step": 6000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_6000.pth",
+      "val_mel": 18.91,
+      "cos_mean_off_diag": -0.05250868946313858,
+      "cos_max_off_diag": 0.0911673754453659,
+      "cos_min_off_diag": -0.22458243370056152,
+      "joint_score": -8.384913105368614,
+      "frobenius": 3.1686856746673584
+    },
+    {
+      "step": 8000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_8000.pth",
+      "val_mel": 18.67,
+      "cos_mean_off_diag": -0.06540379673242569,
+      "cos_max_off_diag": 0.06801463663578033,
+      "cos_min_off_diag": -0.2305789738893509,
+      "joint_score": -8.015962032675745,
+      "frobenius": 3.2268288135528564
+    },
+    {
+      "step": 10000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_10000.pth",
+      "val_mel": 18.48,
+      "cos_mean_off_diag": -0.07977484166622162,
+      "cos_max_off_diag": 0.06532679498195648,
+      "cos_min_off_diag": -0.2640238404273987,
+      "joint_score": -7.682251583337784,
+      "frobenius": 3.2730743885040283
+    },
+    {
+      "step": 12000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_12000.pth",
+      "val_mel": 18.74,
+      "cos_mean_off_diag": -0.0869484543800354,
+      "cos_max_off_diag": 0.07963906228542328,
+      "cos_min_off_diag": -0.25458985567092896,
+      "joint_score": -7.870515456199644,
+      "frobenius": 3.299036979675293
+    },
+    {
+      "step": 14000,
+      "ckpt": "/home/ubuntu/emonarrify/weights/phase3_new_v3_no_ortho/G_14000.pth",
+      "val_mel": 18.84,
+      "cos_mean_off_diag": -0.08915599435567856,
+      "cos_max_off_diag": 0.08443313091993332,
+      "cos_min_off_diag": -0.2719958424568176,
+      "joint_score": -7.948440056443214,
+      "frobenius": 3.3119728565216064
+    }
+  ],
+  "drift_vs_run1_g18000": {
+    "per_emotion_cos": {
+      "neutral": 0.9647789597511292,
+      "happy": 0.9715636968612671,
+      "angry": 0.9720733165740967,
+      "sad": 0.9672650098800659,
+      "surprise": 0.9740585088729858
+    },
+    "per_emotion_l2": {
+      "neutral": 0.39753133058547974,
+      "happy": 0.32141217589378357,
+      "angry": 0.34434792399406433,
+      "sad": 0.4201580882072449,
+      "surprise": 0.3385184109210968
+    },
+    "mean_per_emotion_cos": 0.9699479341506958,
+    "min_per_emotion_cos": 0.9647789597511292
+  }
+}

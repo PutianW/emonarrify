@@ -1,0 +1,1790 @@
+{
+  "config": {
+    "experiment": "Phase 3 isolated SER eval (Stage G Run 3 G_10000 (lambda_ortho=0))",
+    "narratives_per_emotion": 11,
+    "narratives": [
+      "A quiet scene unfolds, captured in this image.",
+      "We are going to have a presentation tomorrow.",
+      "The story begins with a single moment of stillness.",
+      "Years pass and memories fade like distant echoes.",
+      "Today is the day we have been waiting for.",
+      "The road ahead is long and full of possibilities.",
+      "Children laughed as the sun set over the meadow.",
+      "He walked alone through the empty streets at night.",
+      "The discovery changed everything they thought they knew.",
+      "Music filled the room and carried us away.",
+      "And so the chapter ended, with promises kept."
+    ],
+    "ser_model": "superb/wav2vec2-base-superb-er",
+    "ser_label_map": {
+      "neu": "neutral",
+      "hap": "happy",
+      "ang": "angry",
+      "sad": "sad"
+    },
+    "ser_caveat": "4-class IEMOCAP; intended 'surprise' has no SER class."
+  },
+  "n_total": 55,
+  "overall_accuracy": 0.2545454545454545,
+  "macro_accuracy": 0.2545454545454545,
+  "per_class_accuracy": {
+    "neutral": {
+      "n": 11,
+      "correct": 5,
+      "acc": 0.45454545454545453
+    },
+    "happy": {
+      "n": 11,
+      "correct": 6,
+      "acc": 0.5454545454545454
+    },
+    "angry": {
+      "n": 11,
+      "correct": 3,
+      "acc": 0.2727272727272727
+    },
+    "sad": {
+      "n": 11,
+      "correct": 0,
+      "acc": 0.0
+    },
+    "surprise": {
+      "n": 11,
+      "correct": 0,
+      "acc": 0.0
+    }
+  },
+  "confusion_matrix": {
+    "neutral": {
+      "happy": 5,
+      "neutral": 5,
+      "sad": 1
+    },
+    "happy": {
+      "neutral": 4,
+      "happy": 6,
+      "angry": 1
+    },
+    "angry": {
+      "neutral": 5,
+      "angry": 3,
+      "happy": 3
+    },
+    "sad": {
+      "happy": 9,
+      "neutral": 2
+    },
+    "surprise": {
+      "happy": 8,
+      "neutral": 2,
+      "angry": 1
+    }
+  },
+  "samples": [
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 0,
+      "narrative": "A quiet scene unfolds, captured in this image.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_00.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.648,
+      "audio_peak": 0.14152638614177704,
+      "audio_rms": 0.019790105521678925,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5582222938537598,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5582222938537598
+        },
+        {
+          "label": "neu",
+          "score": 0.4399271011352539
+        },
+        {
+          "label": "sad",
+          "score": 0.0010703831212595105
+        },
+        {
+          "label": "ang",
+          "score": 0.0007801441242918372
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 1,
+      "narrative": "We are going to have a presentation tomorrow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_01.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.832,
+      "audio_peak": 0.2034769207239151,
+      "audio_rms": 0.0273049958050251,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.682702898979187,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.682702898979187
+        },
+        {
+          "label": "hap",
+          "score": 0.31507471203804016
+        },
+        {
+          "label": "ang",
+          "score": 0.0017386912368237972
+        },
+        {
+          "label": "sad",
+          "score": 0.00048371951561421156
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 2,
+      "narrative": "The story begins with a single moment of stillness.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_02.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.264,
+      "audio_peak": 0.1754108965396881,
+      "audio_rms": 0.02166936919093132,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8730050921440125,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8730050921440125
+        },
+        {
+          "label": "neu",
+          "score": 0.06385450065135956
+        },
+        {
+          "label": "ang",
+          "score": 0.062244053930044174
+        },
+        {
+          "label": "sad",
+          "score": 0.0008963670115917921
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 3,
+      "narrative": "Years pass and memories fade like distant echoes.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_03.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.824,
+      "audio_peak": 0.28588175773620605,
+      "audio_rms": 0.025614650920033455,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.4953954815864563,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.4953954815864563
+        },
+        {
+          "label": "neu",
+          "score": 0.4347012937068939
+        },
+        {
+          "label": "ang",
+          "score": 0.06650588661432266
+        },
+        {
+          "label": "sad",
+          "score": 0.003397313877940178
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 4,
+      "narrative": "Today is the day we have been waiting for.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_04.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.704,
+      "audio_peak": 0.12301476299762726,
+      "audio_rms": 0.021713849157094955,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6967697143554688,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6967697143554688
+        },
+        {
+          "label": "hap",
+          "score": 0.2705497145652771
+        },
+        {
+          "label": "ang",
+          "score": 0.020386522635817528
+        },
+        {
+          "label": "sad",
+          "score": 0.01229399535804987
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 5,
+      "narrative": "The road ahead is long and full of possibilities.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_05.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.504,
+      "audio_peak": 0.14306248724460602,
+      "audio_rms": 0.022565407678484917,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.8959062695503235,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.8959062695503235
+        },
+        {
+          "label": "hap",
+          "score": 0.080851711332798
+        },
+        {
+          "label": "ang",
+          "score": 0.02132107876241207
+        },
+        {
+          "label": "sad",
+          "score": 0.0019209202146157622
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 6,
+      "narrative": "Children laughed as the sun set over the meadow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_06.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.36,
+      "audio_peak": 0.2011793553829193,
+      "audio_rms": 0.02320253476500511,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5757118463516235,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5757118463516235
+        },
+        {
+          "label": "neu",
+          "score": 0.3989884853363037
+        },
+        {
+          "label": "ang",
+          "score": 0.015595000237226486
+        },
+        {
+          "label": "sad",
+          "score": 0.00970464013516903
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 7,
+      "narrative": "He walked alone through the empty streets at night.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_07.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.072,
+      "audio_peak": 0.13349099457263947,
+      "audio_rms": 0.017433905974030495,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6961848735809326,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6961848735809326
+        },
+        {
+          "label": "hap",
+          "score": 0.2977893054485321
+        },
+        {
+          "label": "ang",
+          "score": 0.003617993788793683
+        },
+        {
+          "label": "sad",
+          "score": 0.0024077913258224726
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 8,
+      "narrative": "The discovery changed everything they thought they knew.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_08.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.392,
+      "audio_peak": 0.18171288073062897,
+      "audio_rms": 0.02339230105280876,
+      "ser_top1_raw": "sad",
+      "ser_top1_mapped": "sad",
+      "ser_top1_score": 0.4537844657897949,
+      "ser_full_output": [
+        {
+          "label": "sad",
+          "score": 0.4537844657897949
+        },
+        {
+          "label": "neu",
+          "score": 0.2784813642501831
+        },
+        {
+          "label": "hap",
+          "score": 0.2669029235839844
+        },
+        {
+          "label": "ang",
+          "score": 0.0008312120917253196
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 9,
+      "narrative": "Music filled the room and carried us away.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_09.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.864,
+      "audio_peak": 0.16395850479602814,
+      "audio_rms": 0.022971495985984802,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.46840494871139526,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.46840494871139526
+        },
+        {
+          "label": "neu",
+          "score": 0.4596254825592041
+        },
+        {
+          "label": "ang",
+          "score": 0.03660956397652626
+        },
+        {
+          "label": "sad",
+          "score": 0.035360053181648254
+        }
+      ]
+    },
+    {
+      "emotion_intended": "neutral",
+      "narrative_idx": 10,
+      "narrative": "And so the chapter ended, with promises kept.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/neutral_10.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.28,
+      "audio_peak": 0.15020634233951569,
+      "audio_rms": 0.019153082743287086,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7503528594970703,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7503528594970703
+        },
+        {
+          "label": "hap",
+          "score": 0.24637706577777863
+        },
+        {
+          "label": "ang",
+          "score": 0.0022817477583885193
+        },
+        {
+          "label": "sad",
+          "score": 0.0009883063612505794
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 0,
+      "narrative": "A quiet scene unfolds, captured in this image.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_00.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.568,
+      "audio_peak": 0.261112242937088,
+      "audio_rms": 0.027919212356209755,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.703399658203125,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.703399658203125
+        },
+        {
+          "label": "hap",
+          "score": 0.2889391779899597
+        },
+        {
+          "label": "ang",
+          "score": 0.007213036995381117
+        },
+        {
+          "label": "sad",
+          "score": 0.000448122009402141
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 1,
+      "narrative": "We are going to have a presentation tomorrow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_01.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.928,
+      "audio_peak": 0.2395835667848587,
+      "audio_rms": 0.027938006445765495,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6165745854377747,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6165745854377747
+        },
+        {
+          "label": "hap",
+          "score": 0.26049143075942993
+        },
+        {
+          "label": "ang",
+          "score": 0.1201893538236618
+        },
+        {
+          "label": "sad",
+          "score": 0.0027445130981504917
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 2,
+      "narrative": "The story begins with a single moment of stillness.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_02.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.744,
+      "audio_peak": 0.24269439280033112,
+      "audio_rms": 0.02491399459540844,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.9314997792243958,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.9314997792243958
+        },
+        {
+          "label": "ang",
+          "score": 0.03647813946008682
+        },
+        {
+          "label": "neu",
+          "score": 0.03132710978388786
+        },
+        {
+          "label": "sad",
+          "score": 0.0006949884700588882
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 3,
+      "narrative": "Years pass and memories fade like distant echoes.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_03.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.152,
+      "audio_peak": 0.17043566703796387,
+      "audio_rms": 0.02104305848479271,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7308825850486755,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7308825850486755
+        },
+        {
+          "label": "ang",
+          "score": 0.17817479372024536
+        },
+        {
+          "label": "hap",
+          "score": 0.08167697489261627
+        },
+        {
+          "label": "sad",
+          "score": 0.009265665896236897
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 4,
+      "narrative": "Today is the day we have been waiting for.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_04.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.168,
+      "audio_peak": 0.27244988083839417,
+      "audio_rms": 0.036703336983919144,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5039224624633789,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5039224624633789
+        },
+        {
+          "label": "neu",
+          "score": 0.2785555124282837
+        },
+        {
+          "label": "ang",
+          "score": 0.18182924389839172
+        },
+        {
+          "label": "sad",
+          "score": 0.035692743957042694
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 5,
+      "narrative": "The road ahead is long and full of possibilities.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_05.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.696,
+      "audio_peak": 0.15955716371536255,
+      "audio_rms": 0.021244296804070473,
+      "ser_top1_raw": "ang",
+      "ser_top1_mapped": "angry",
+      "ser_top1_score": 0.4811258316040039,
+      "ser_full_output": [
+        {
+          "label": "ang",
+          "score": 0.4811258316040039
+        },
+        {
+          "label": "neu",
+          "score": 0.3271631598472595
+        },
+        {
+          "label": "hap",
+          "score": 0.18984249234199524
+        },
+        {
+          "label": "sad",
+          "score": 0.0018685300601646304
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 6,
+      "narrative": "Children laughed as the sun set over the meadow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_06.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.928,
+      "audio_peak": 0.1630372703075409,
+      "audio_rms": 0.02864273078739643,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8327720761299133,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8327720761299133
+        },
+        {
+          "label": "ang",
+          "score": 0.15099866688251495
+        },
+        {
+          "label": "neu",
+          "score": 0.013824809342622757
+        },
+        {
+          "label": "sad",
+          "score": 0.002404412254691124
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 7,
+      "narrative": "He walked alone through the empty streets at night.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_07.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.424,
+      "audio_peak": 0.162218376994133,
+      "audio_rms": 0.024135228246450424,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6046167612075806,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6046167612075806
+        },
+        {
+          "label": "neu",
+          "score": 0.28281304240226746
+        },
+        {
+          "label": "ang",
+          "score": 0.1124139055609703
+        },
+        {
+          "label": "sad",
+          "score": 0.00015631839050911367
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 8,
+      "narrative": "The discovery changed everything they thought they knew.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_08.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.904,
+      "audio_peak": 0.31539690494537354,
+      "audio_rms": 0.026718828827142715,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8937252759933472,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8937252759933472
+        },
+        {
+          "label": "sad",
+          "score": 0.051594071090221405
+        },
+        {
+          "label": "ang",
+          "score": 0.027990560978651047
+        },
+        {
+          "label": "neu",
+          "score": 0.02669011615216732
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 9,
+      "narrative": "Music filled the room and carried us away.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_09.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.072,
+      "audio_peak": 0.20806756615638733,
+      "audio_rms": 0.03024272248148918,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8170019388198853,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8170019388198853
+        },
+        {
+          "label": "ang",
+          "score": 0.07630548626184464
+        },
+        {
+          "label": "neu",
+          "score": 0.07022905349731445
+        },
+        {
+          "label": "sad",
+          "score": 0.03646362945437431
+        }
+      ]
+    },
+    {
+      "emotion_intended": "happy",
+      "narrative_idx": 10,
+      "narrative": "And so the chapter ended, with promises kept.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/happy_10.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.488,
+      "audio_peak": 0.2161710113286972,
+      "audio_rms": 0.02377728745341301,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.554223358631134,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.554223358631134
+        },
+        {
+          "label": "hap",
+          "score": 0.4072878956794739
+        },
+        {
+          "label": "ang",
+          "score": 0.03759231045842171
+        },
+        {
+          "label": "sad",
+          "score": 0.0008963907603174448
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 0,
+      "narrative": "A quiet scene unfolds, captured in this image.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_00.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.264,
+      "audio_peak": 0.4359697699546814,
+      "audio_rms": 0.028293708339333534,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6309971213340759,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6309971213340759
+        },
+        {
+          "label": "hap",
+          "score": 0.32115450501441956
+        },
+        {
+          "label": "ang",
+          "score": 0.04703710600733757
+        },
+        {
+          "label": "sad",
+          "score": 0.0008112809155136347
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 1,
+      "narrative": "We are going to have a presentation tomorrow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_01.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.992,
+      "audio_peak": 0.2895977199077606,
+      "audio_rms": 0.036566562950611115,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6746528744697571,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6746528744697571
+        },
+        {
+          "label": "hap",
+          "score": 0.271797239780426
+        },
+        {
+          "label": "ang",
+          "score": 0.04509062319993973
+        },
+        {
+          "label": "sad",
+          "score": 0.008459338918328285
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 2,
+      "narrative": "The story begins with a single moment of stillness.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_02.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.6,
+      "audio_peak": 0.25450026988983154,
+      "audio_rms": 0.0329689085483551,
+      "ser_top1_raw": "ang",
+      "ser_top1_mapped": "angry",
+      "ser_top1_score": 0.9233396649360657,
+      "ser_full_output": [
+        {
+          "label": "ang",
+          "score": 0.9233396649360657
+        },
+        {
+          "label": "hap",
+          "score": 0.07487033307552338
+        },
+        {
+          "label": "neu",
+          "score": 0.0017338492907583714
+        },
+        {
+          "label": "sad",
+          "score": 5.61448723601643e-05
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 3,
+      "narrative": "Years pass and memories fade like distant echoes.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_03.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.176,
+      "audio_peak": 0.3476043939590454,
+      "audio_rms": 0.032730747014284134,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.4688657224178314,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.4688657224178314
+        },
+        {
+          "label": "hap",
+          "score": 0.26565465331077576
+        },
+        {
+          "label": "ang",
+          "score": 0.25051113963127136
+        },
+        {
+          "label": "sad",
+          "score": 0.014968393370509148
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 4,
+      "narrative": "Today is the day we have been waiting for.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_04.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.616,
+      "audio_peak": 0.2523014545440674,
+      "audio_rms": 0.04350649192929268,
+      "ser_top1_raw": "ang",
+      "ser_top1_mapped": "angry",
+      "ser_top1_score": 0.4958919882774353,
+      "ser_full_output": [
+        {
+          "label": "ang",
+          "score": 0.4958919882774353
+        },
+        {
+          "label": "hap",
+          "score": 0.3091947138309479
+        },
+        {
+          "label": "sad",
+          "score": 0.1667916625738144
+        },
+        {
+          "label": "neu",
+          "score": 0.02812156081199646
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 5,
+      "narrative": "The road ahead is long and full of possibilities.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_05.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.776,
+      "audio_peak": 0.4717975854873657,
+      "audio_rms": 0.05153825879096985,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6214935779571533,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6214935779571533
+        },
+        {
+          "label": "ang",
+          "score": 0.20018567144870758
+        },
+        {
+          "label": "hap",
+          "score": 0.17597034573554993
+        },
+        {
+          "label": "sad",
+          "score": 0.0023505459539592266
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 6,
+      "narrative": "Children laughed as the sun set over the meadow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_06.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.392,
+      "audio_peak": 0.37002599239349365,
+      "audio_rms": 0.03598668426275253,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6513041853904724,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6513041853904724
+        },
+        {
+          "label": "ang",
+          "score": 0.28488853573799133
+        },
+        {
+          "label": "neu",
+          "score": 0.056019436568021774
+        },
+        {
+          "label": "sad",
+          "score": 0.007787793409079313
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 7,
+      "narrative": "He walked alone through the empty streets at night.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_07.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.2,
+      "audio_peak": 0.2767845392227173,
+      "audio_rms": 0.030569545924663544,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6299726366996765,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6299726366996765
+        },
+        {
+          "label": "ang",
+          "score": 0.22046740353107452
+        },
+        {
+          "label": "neu",
+          "score": 0.1493578553199768
+        },
+        {
+          "label": "sad",
+          "score": 0.00020207723719067872
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 8,
+      "narrative": "The discovery changed everything they thought they knew.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_08.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.632,
+      "audio_peak": 0.19383981823921204,
+      "audio_rms": 0.026844576001167297,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5283458232879639,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5283458232879639
+        },
+        {
+          "label": "ang",
+          "score": 0.2693972885608673
+        },
+        {
+          "label": "sad",
+          "score": 0.1259528249502182
+        },
+        {
+          "label": "neu",
+          "score": 0.07630406320095062
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 9,
+      "narrative": "Music filled the room and carried us away.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_09.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.072,
+      "audio_peak": 0.2918112277984619,
+      "audio_rms": 0.04608435556292534,
+      "ser_top1_raw": "ang",
+      "ser_top1_mapped": "angry",
+      "ser_top1_score": 0.9112123250961304,
+      "ser_full_output": [
+        {
+          "label": "ang",
+          "score": 0.9112123250961304
+        },
+        {
+          "label": "hap",
+          "score": 0.06537672132253647
+        },
+        {
+          "label": "sad",
+          "score": 0.016474459320306778
+        },
+        {
+          "label": "neu",
+          "score": 0.006936458870768547
+        }
+      ]
+    },
+    {
+      "emotion_intended": "angry",
+      "narrative_idx": 10,
+      "narrative": "And so the chapter ended, with promises kept.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/angry_10.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.76,
+      "audio_peak": 0.3531681001186371,
+      "audio_rms": 0.03031633421778679,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.9062225818634033,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.9062225818634033
+        },
+        {
+          "label": "hap",
+          "score": 0.07536493986845016
+        },
+        {
+          "label": "ang",
+          "score": 0.017967240884900093
+        },
+        {
+          "label": "sad",
+          "score": 0.0004452117718756199
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 0,
+      "narrative": "A quiet scene unfolds, captured in this image.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_00.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.144,
+      "audio_peak": 0.2509087026119232,
+      "audio_rms": 0.02363510988652706,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5211790800094604,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5211790800094604
+        },
+        {
+          "label": "neu",
+          "score": 0.47718483209609985
+        },
+        {
+          "label": "sad",
+          "score": 0.0014764865627512336
+        },
+        {
+          "label": "ang",
+          "score": 0.0001595280773472041
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 1,
+      "narrative": "We are going to have a presentation tomorrow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_01.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.536,
+      "audio_peak": 0.1806028187274933,
+      "audio_rms": 0.029696930199861526,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7349005937576294,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7349005937576294
+        },
+        {
+          "label": "hap",
+          "score": 0.24984854459762573
+        },
+        {
+          "label": "sad",
+          "score": 0.014685582369565964
+        },
+        {
+          "label": "ang",
+          "score": 0.0005652953404933214
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 2,
+      "narrative": "The story begins with a single moment of stillness.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_02.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.808,
+      "audio_peak": 0.18614794313907623,
+      "audio_rms": 0.03006575256586075,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.9443878531455994,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.9443878531455994
+        },
+        {
+          "label": "ang",
+          "score": 0.026307879015803337
+        },
+        {
+          "label": "neu",
+          "score": 0.022939028218388557
+        },
+        {
+          "label": "sad",
+          "score": 0.006365293171256781
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 3,
+      "narrative": "Years pass and memories fade like distant echoes.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_03.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 5.216,
+      "audio_peak": 0.15551303327083588,
+      "audio_rms": 0.023395145311951637,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7877049446105957,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7877049446105957
+        },
+        {
+          "label": "neu",
+          "score": 0.2080661952495575
+        },
+        {
+          "label": "sad",
+          "score": 0.0026359218172729015
+        },
+        {
+          "label": "ang",
+          "score": 0.001592902815900743
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 4,
+      "narrative": "Today is the day we have been waiting for.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_04.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.28,
+      "audio_peak": 0.1708884984254837,
+      "audio_rms": 0.030978085473179817,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7385532855987549,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7385532855987549
+        },
+        {
+          "label": "neu",
+          "score": 0.21137689054012299
+        },
+        {
+          "label": "sad",
+          "score": 0.048747945576906204
+        },
+        {
+          "label": "ang",
+          "score": 0.0013218920212239027
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 5,
+      "narrative": "The road ahead is long and full of possibilities.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_05.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.304,
+      "audio_peak": 0.21476690471172333,
+      "audio_rms": 0.02959502674639225,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.6434127688407898,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.6434127688407898
+        },
+        {
+          "label": "hap",
+          "score": 0.34957027435302734
+        },
+        {
+          "label": "sad",
+          "score": 0.005996800027787685
+        },
+        {
+          "label": "ang",
+          "score": 0.0010201747063547373
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 6,
+      "narrative": "Children laughed as the sun set over the meadow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_06.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.632,
+      "audio_peak": 0.13567999005317688,
+      "audio_rms": 0.024223946034908295,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.9392743706703186,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.9392743706703186
+        },
+        {
+          "label": "neu",
+          "score": 0.05209500342607498
+        },
+        {
+          "label": "sad",
+          "score": 0.007767029572278261
+        },
+        {
+          "label": "ang",
+          "score": 0.0008635441190563142
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 7,
+      "narrative": "He walked alone through the empty streets at night.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_07.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.792,
+      "audio_peak": 0.14982564747333527,
+      "audio_rms": 0.021632324904203415,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8860428333282471,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8860428333282471
+        },
+        {
+          "label": "neu",
+          "score": 0.09990772604942322
+        },
+        {
+          "label": "sad",
+          "score": 0.011850547976791859
+        },
+        {
+          "label": "ang",
+          "score": 0.00219892431050539
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 8,
+      "narrative": "The discovery changed everything they thought they knew.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_08.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.032,
+      "audio_peak": 0.15286153554916382,
+      "audio_rms": 0.0250596571713686,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8066753149032593,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8066753149032593
+        },
+        {
+          "label": "neu",
+          "score": 0.15017202496528625
+        },
+        {
+          "label": "sad",
+          "score": 0.04180532321333885
+        },
+        {
+          "label": "ang",
+          "score": 0.0013473853468894958
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 9,
+      "narrative": "Music filled the room and carried us away.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_09.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.68,
+      "audio_peak": 0.204976886510849,
+      "audio_rms": 0.025815512984991074,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8182808756828308,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8182808756828308
+        },
+        {
+          "label": "neu",
+          "score": 0.11693249642848969
+        },
+        {
+          "label": "sad",
+          "score": 0.06248515471816063
+        },
+        {
+          "label": "ang",
+          "score": 0.0023014158941805363
+        }
+      ]
+    },
+    {
+      "emotion_intended": "sad",
+      "narrative_idx": 10,
+      "narrative": "And so the chapter ended, with promises kept.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/sad_10.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 4.368,
+      "audio_peak": 0.18955162167549133,
+      "audio_rms": 0.024911614134907722,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.5174893140792847,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.5174893140792847
+        },
+        {
+          "label": "neu",
+          "score": 0.4741308391094208
+        },
+        {
+          "label": "sad",
+          "score": 0.007030407898128033
+        },
+        {
+          "label": "ang",
+          "score": 0.0013495265739038587
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 0,
+      "narrative": "A quiet scene unfolds, captured in this image.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_00.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.728,
+      "audio_peak": 0.29572784900665283,
+      "audio_rms": 0.03286226466298103,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7127673029899597,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7127673029899597
+        },
+        {
+          "label": "neu",
+          "score": 0.2357056736946106
+        },
+        {
+          "label": "ang",
+          "score": 0.05013370141386986
+        },
+        {
+          "label": "sad",
+          "score": 0.0013933853479102254
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 1,
+      "narrative": "We are going to have a presentation tomorrow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_01.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.248,
+      "audio_peak": 0.291814923286438,
+      "audio_rms": 0.03702300786972046,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6379037499427795,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6379037499427795
+        },
+        {
+          "label": "neu",
+          "score": 0.23242656886577606
+        },
+        {
+          "label": "ang",
+          "score": 0.12479908764362335
+        },
+        {
+          "label": "sad",
+          "score": 0.004870540928095579
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 2,
+      "narrative": "The story begins with a single moment of stillness.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_02.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.104,
+      "audio_peak": 0.23850709199905396,
+      "audio_rms": 0.03609368950128555,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8646761178970337,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8646761178970337
+        },
+        {
+          "label": "ang",
+          "score": 0.11692464351654053
+        },
+        {
+          "label": "neu",
+          "score": 0.017643356695771217
+        },
+        {
+          "label": "sad",
+          "score": 0.0007558900397270918
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 3,
+      "narrative": "Years pass and memories fade like distant echoes.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_03.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.696,
+      "audio_peak": 0.27567732334136963,
+      "audio_rms": 0.03083876334130764,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.7739896178245544,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.7739896178245544
+        },
+        {
+          "label": "neu",
+          "score": 0.16299760341644287
+        },
+        {
+          "label": "ang",
+          "score": 0.06152470037341118
+        },
+        {
+          "label": "sad",
+          "score": 0.001488099223934114
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 4,
+      "narrative": "Today is the day we have been waiting for.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_04.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.816,
+      "audio_peak": 0.16369982063770294,
+      "audio_rms": 0.028418203815817833,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.37879878282546997,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.37879878282546997
+        },
+        {
+          "label": "hap",
+          "score": 0.3338528871536255
+        },
+        {
+          "label": "ang",
+          "score": 0.1994801163673401
+        },
+        {
+          "label": "sad",
+          "score": 0.08786831051111221
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 5,
+      "narrative": "The road ahead is long and full of possibilities.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_05.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.76,
+      "audio_peak": 0.20205114781856537,
+      "audio_rms": 0.03421167656779289,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.8086739778518677,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.8086739778518677
+        },
+        {
+          "label": "neu",
+          "score": 0.1332021951675415
+        },
+        {
+          "label": "ang",
+          "score": 0.05378687009215355
+        },
+        {
+          "label": "sad",
+          "score": 0.004336888901889324
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 6,
+      "narrative": "Children laughed as the sun set over the meadow.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_06.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.392,
+      "audio_peak": 0.3736562132835388,
+      "audio_rms": 0.04067244380712509,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.9531034827232361,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.9531034827232361
+        },
+        {
+          "label": "ang",
+          "score": 0.04365920275449753
+        },
+        {
+          "label": "neu",
+          "score": 0.0026986291632056236
+        },
+        {
+          "label": "sad",
+          "score": 0.0005386460106819868
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 7,
+      "narrative": "He walked alone through the empty streets at night.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_07.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.088,
+      "audio_peak": 0.23844820261001587,
+      "audio_rms": 0.02497127465903759,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.672972559928894,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.672972559928894
+        },
+        {
+          "label": "neu",
+          "score": 0.24538706243038177
+        },
+        {
+          "label": "ang",
+          "score": 0.07694582641124725
+        },
+        {
+          "label": "sad",
+          "score": 0.0046945069916546345
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 8,
+      "narrative": "The discovery changed everything they thought they knew.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_08.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.248,
+      "audio_peak": 0.2998967170715332,
+      "audio_rms": 0.03694794699549675,
+      "ser_top1_raw": "hap",
+      "ser_top1_mapped": "happy",
+      "ser_top1_score": 0.6163482069969177,
+      "ser_full_output": [
+        {
+          "label": "hap",
+          "score": 0.6163482069969177
+        },
+        {
+          "label": "neu",
+          "score": 0.3058948814868927
+        },
+        {
+          "label": "ang",
+          "score": 0.05387987196445465
+        },
+        {
+          "label": "sad",
+          "score": 0.023877078667283058
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 9,
+      "narrative": "Music filled the room and carried us away.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_09.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 2.8,
+      "audio_peak": 0.25198987126350403,
+      "audio_rms": 0.031152762472629547,
+      "ser_top1_raw": "ang",
+      "ser_top1_mapped": "angry",
+      "ser_top1_score": 0.6170151829719543,
+      "ser_full_output": [
+        {
+          "label": "ang",
+          "score": 0.6170151829719543
+        },
+        {
+          "label": "hap",
+          "score": 0.3581397831439972
+        },
+        {
+          "label": "neu",
+          "score": 0.020049648359417915
+        },
+        {
+          "label": "sad",
+          "score": 0.00479540741071105
+        }
+      ]
+    },
+    {
+      "emotion_intended": "surprise",
+      "narrative_idx": 10,
+      "narrative": "And so the chapter ended, with promises kept.",
+      "wav_path": "outputs/ser_phase3_isolated_wavs_v3_no_ortho/surprise_10.wav",
+      "sample_rate": 16000,
+      "audio_duration_s": 3.376,
+      "audio_peak": 0.2944597005844116,
+      "audio_rms": 0.032493725419044495,
+      "ser_top1_raw": "neu",
+      "ser_top1_mapped": "neutral",
+      "ser_top1_score": 0.7037467956542969,
+      "ser_full_output": [
+        {
+          "label": "neu",
+          "score": 0.7037467956542969
+        },
+        {
+          "label": "ang",
+          "score": 0.26430562138557434
+        },
+        {
+          "label": "hap",
+          "score": 0.031096985563635826
+        },
+        {
+          "label": "sad",
+          "score": 0.0008506160811521113
+        }
+      ]
+    }
+  ]
+}
