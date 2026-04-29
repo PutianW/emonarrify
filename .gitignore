@@ -45,6 +45,9 @@ outputs/**/vits_train.log
 # Stage G Run 3 ablation (lambda_ortho=0) listening A/B set; committed
 # alongside Run 1 + Run 2 for the 3-run ablation matrix.
 !outputs/phase3_new_v3_no_ortho_listening/*.wav
+# 5-sample exhibit (one image per emotion class) for final report appendix;
+# committed alongside outputs/demo/ as additional qualitative evidence.
+!outputs/samples/*.wav
 # SER eval per-sample metadata (Tasks 1, 2a, 2b); small jsonl files,
 # committed alongside the eval JSON summaries. Phase 1 / phase3 raw
 # data jsonls under data/ stay ignored via data/*.jsonl above.

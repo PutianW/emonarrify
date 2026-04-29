@@ -1,0 +1,140 @@
+{
+  "sample_set_description": "Five-sample exhibit, one image per emotion class, deterministic first-match from VIST test split (deduped against commit 20 demo set, val-split fallback if test exhausted).",
+  "pipeline_config": {
+    "phase1_mode": "stub (canned narrative + neutral label)",
+    "phase2_ckpt": "weights/phase2_mlp.pt",
+    "phase3_ckpt": "weights/phase3_new_v1/G_18000.pth",
+    "lookup_table": "weights/emotion_lookup_table.json",
+    "ground_truth_source": "GoEmotions auto-label on VIST narrative",
+    "phase2_nn_method": "argmax cos sim (Phase 2 emb vs 5 lookup vectors)"
+  },
+  "fallback_emotions": [],
+  "demo_dedup_count": 10,
+  "samples": [
+    {
+      "sample_index": 0,
+      "wav_path": "outputs/samples/sample_00_neutral_4717888719.wav",
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4717888719.jpg",
+      "image_id": "4717888719",
+      "split_source": "test",
+      "ground_truth_emotion": "neutral",
+      "ground_truth_narrative": "the night we headed to the fair in town to get on the ferris wheel we kept seeing .",
+      "phase1_emotion_returned": "neutral",
+      "phase1_narrative_returned": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "phase2_nn_predicted_label": "neutral",
+      "phase2_nn_cos_sims": {
+        "neutral": 0.69,
+        "happy": 0.353,
+        "angry": -0.21,
+        "sad": -0.2195,
+        "surprise": -0.1834
+      },
+      "phase2_embedding_norm": 1.7778,
+      "embedding_source": "phase2",
+      "audio_duration_s": 4.704,
+      "audio_peak": 0.1407,
+      "audio_rms": 0.0214,
+      "audio_sample_rate": 16000
+    },
+    {
+      "sample_index": 1,
+      "wav_path": "outputs/samples/sample_01_happy_4992104036.wav",
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/4992104036.jpg",
+      "image_id": "4992104036",
+      "split_source": "test",
+      "ground_truth_emotion": "happy",
+      "ground_truth_narrative": "my sister showed up , she lives in location , i was n't so sure she 'd actually be able to make it . i 'm so glad she 's here .",
+      "phase1_emotion_returned": "neutral",
+      "phase1_narrative_returned": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "phase2_nn_predicted_label": "happy",
+      "phase2_nn_cos_sims": {
+        "neutral": 0.2738,
+        "happy": 0.6801,
+        "angry": -0.0321,
+        "sad": -0.074,
+        "surprise": -0.033
+      },
+      "phase2_embedding_norm": 1.0612,
+      "embedding_source": "phase2",
+      "audio_duration_s": 5.632,
+      "audio_peak": 0.2064,
+      "audio_rms": 0.0285,
+      "audio_sample_rate": 16000
+    },
+    {
+      "sample_index": 2,
+      "wav_path": "outputs/samples/sample_02_angry_6557191555.wav",
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/6557191555.jpg",
+      "image_id": "6557191555",
+      "split_source": "test",
+      "ground_truth_emotion": "angry",
+      "ground_truth_narrative": "i do n't think this is the planet hollywood you hear so much about , but it was a very , very cute restaurant .",
+      "phase1_emotion_returned": "neutral",
+      "phase1_narrative_returned": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "phase2_nn_predicted_label": "neutral",
+      "phase2_nn_cos_sims": {
+        "neutral": 0.487,
+        "happy": 0.2137,
+        "angry": -0.0788,
+        "sad": 0.2702,
+        "surprise": -0.0648
+      },
+      "phase2_embedding_norm": 0.8569,
+      "embedding_source": "phase2",
+      "audio_duration_s": 5.2,
+      "audio_peak": 0.2141,
+      "audio_rms": 0.0272,
+      "audio_sample_rate": 16000
+    },
+    {
+      "sample_index": 3,
+      "wav_path": "outputs/samples/sample_03_sad_6613456571.wav",
+      "image_path": "/home/ubuntu/emonarrify/data/images/train/6613456571.jpg",
+      "image_id": "6613456571",
+      "split_source": "test",
+      "ground_truth_emotion": "sad",
+      "ground_truth_narrative": "of course , the storm troopers scared me a little , since i was in a mode of accepting fantasy as truth . i worried they would get me !",
+      "phase1_emotion_returned": "neutral",
+      "phase1_narrative_returned": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "phase2_nn_predicted_label": "neutral",
+      "phase2_nn_cos_sims": {
+        "neutral": 0.7434,
+        "happy": -0.0348,
+        "angry": -0.1006,
+        "sad": -0.1378,
+        "surprise": 0.1377
+      },
+      "phase2_embedding_norm": 1.2642,
+      "embedding_source": "phase2",
+      "audio_duration_s": 5.488,
+      "audio_peak": 0.2474,
+      "audio_rms": 0.0306,
+      "audio_sample_rate": 16000
+    },
+    {
+      "sample_index": 4,
+      "wav_path": "outputs/samples/sample_04_surprise_4244035888.wav",
+      "image_path": "/home/ubuntu/emonarrify/data/images/val/4244035888.jpg",
+      "image_id": "4244035888",
+      "split_source": "test",
+      "ground_truth_emotion": "surprise",
+      "ground_truth_narrative": "they gazed out at the water , wondering what life was like here so long ago .",
+      "phase1_emotion_returned": "neutral",
+      "phase1_narrative_returned": "A quiet scene unfolds, captured in this image, telling its silent story.",
+      "phase2_nn_predicted_label": "happy",
+      "phase2_nn_cos_sims": {
+        "neutral": 0.325,
+        "happy": 0.5602,
+        "angry": -0.2303,
+        "sad": 0.077,
+        "surprise": 0.2257
+      },
+      "phase2_embedding_norm": 1.0882,
+      "embedding_source": "phase2",
+      "audio_duration_s": 5.344,
+      "audio_peak": 0.2033,
+      "audio_rms": 0.0264,
+      "audio_sample_rate": 16000
+    }
+  ]
+}
